@@ -464,6 +464,27 @@ ul.pagination li.active a, ul.pagination li > a:hover, ul.pagination li.active a
     margin-top: 11px;
     text-align: center;
 }
+
+/* Update the existing rule for phone number visibility */
+/* Keep default text white for consistency */
+.single-top-right {
+    color: #fff;
+    margin-top: 11px;
+    text-align: center;
+    margin-right: 20px;
+}
+
+/* Keep links white for red background */
+.single-top-right a {
+    color: #fff;
+}
+
+/* Specifically for the Call Us section */
+.single-top-right.phone a {
+    color: #000;   /* black number for visibility */
+    font-weight: bold;
+}
+
 .cart-top-menu {
     float: right;
 }
@@ -485,6 +506,8 @@ ul.pagination li.active a, ul.pagination li > a:hover, ul.pagination li.active a
     width: 75px;
     border: 1px solid #ddd
 }
+
+
 .cart-btn-pro-cont > h4 {
     color: #303030;
     font-size: 14px;
