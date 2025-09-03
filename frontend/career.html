@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Title -->
+    <title data-en="Yashraj Business Group - Careers" data-mr="यशराज बिझनेस ग्रुप - करिअर">Yashraj Business Group - Careers</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/image.png">
+
+    <!-- Google Fonts for Marathi Support -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+
+    <!-- Font awesome CSS -->
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="assets/css/animate.min.css">
+
+    <!-- OwlCarousel CSS -->
+    <link rel="stylesheet" href="assets/css/owl.carousel.css">
+
+    <!-- Flaticon CSS -->
+    <link rel="stylesheet" href="assets/flaticon/flaticon.css">
+
+    <!-- SlickNav CSS -->
+    <link rel="stylesheet" href="assets/css/slicknav.min.css">
+
+    <!-- Featherlight CSS -->
+    <link rel="stylesheet" href="assets/css/featherlight.css">
+
+    <!-- Featherlight Gallery CSS -->
+    <link rel="stylesheet" href="assets/css/featherlight.gallery.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="assets/css/responsive.css">
+
+    <style>
+        .job-card {
+            background: #fff;
+            border-radius: 5px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .job-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .job-title {
+            color: #333;
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+
+        .job-meta {
+            margin-bottom: 20px;
+        }
+
+        .job-meta span {
+            margin-right: 20px;
+            color: #666;
+        }
+
+        .job-meta i {
+            color: #ff6b6b;
+            margin-right: 5px;
+        }
+
+        .application-form {
+            background: #fff;
+            padding: 40px;
+            border-radius: 5px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            height: 50px;
+            border-radius: 3px;
+            border: 1px solid #ddd;
+        }
+
+        textarea.form-control {
+            height: 150px;
+        }
+
+        .btn-apply {
+            background: #ff6b6b;
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 3px;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-apply:hover {
+            background: #ff5252;
+            color: #fff;
+        }
+
+        /* Language toggle button */
+        .language-toggle {
+            width:75px;
+            margin-left: 20px;
+            cursor: pointer;
+            color: #fff;
+            background: #e81a39;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .language-toggle:hover {
+            background: #c51432;
+        }
+
+        /* Ensure Marathi font support */
+        body, h1, h2, h3, h4, h5, h6, p, a, li, input, button, label {
+            font-family: 'Noto Sans Devanagari', sans-serif;
+        }
+
+        /* Style for 'Learn More' button */
+        .bleezy-btn {
+            background: #e81a39;
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 3px;
+            text-transform: uppercase;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .bleezy-btn:hover {
+            background: #c51432;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header Area Start -->
+    <header class="bleezy-header-area">
+        <div class="header-right-overlay"></div>
+        <div class="mobile-top-menu">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-6">
+                        <p><i class="fa fa-user"></i><a href="#" data-en="Register" data-mr="नोंदणी">Register</a> or <a href="#" data-en="Login" data-mr="लॉगिन">Login</a></p>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-6">
+                        <div class="cart-top-menu">
+                            <div class="login dropdown">
+                                <a href="#" class="dropdown-toggle cart-icon" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    <i class="fa fa-shopping-bag"></i> <span data-en="Cart(02)" data-mr="कार्ट(02)">Cart(02)</span>
+                                </a>
+                                <div class="dropdown-menu cart-dropdown" aria-labelledby="dropdownMenu2">
+                                    <h3 data-en="Recently added item(s)" data-mr="अलीकडे जोडलेली आयटम(s)">Recently added item(s)</h3>
+                                    <ul>
+                                        <li>
+                                            <div class="cart-btn-product">
+                                                <a class="product-remove" href="#">
+                                                    <i class="fa fa-trash-o"></i>
+                                                </a>
+                                                <div class="cart-btn-pro-img">
+                                                    <a href="#">
+                                                        <img src="assets/img/pro.png" alt="product" />
+                                                    </a>
+                                                </div>
+                                                <div class="cart-btn-pro-cont">
+                                                    <h4><a href="#" data-en="Wireless IP Camera" data-mr="वायरलेस आयपी कॅमेरा">Wireless IP Camera</a></h4>
+                                                    <span class="item-cat">
+                                                        1x$30.00
+                                                    </span>
+                                                    <span class="price">
+                                                        $30.00
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="cart-btn-product">
+                                                <a class="product-remove" href="#">
+                                                    <i class="fa fa-trash-o"></i>
+                                                </a>
+                                                <div class="cart-btn-pro-img">
+                                                    <a href="#">
+                                                        <img src="assets/img/pro-2.png" alt="product" />
+                                                    </a>
+                                                </div>
+                                                <div class="cart-btn-pro-cont">
+                                                    <h4><a href="#" data-en="Door Lock System" data-mr="दरवाजा लॉक सिस्टम">Door Lock System</a></h4>
+                                                    <span class="item-cat">
+                                                        1x$130.00
+                                                    </span>
+                                                    <span class="price">
+                                                        $130.00
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <div class="cart-btn">
+                                        <a href="#" class="cart-btn-1" data-en="View Cart" data-mr="कार्ट पहा">View Cart</a>
+                                        <a href="#" class="cart-btn-2" data-en="Checkout" data-mr="चेकआउट">Checkout</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="site-logo">
+                        <a href="index.html">
+                            <img src="assets/YRBG-images/logo-yashraj-png.png" alt="site logo" />
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="header-right">
+                        <div class="header-right-top">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="single-top-right">
+                                        <p data-en="Call Us:" data-mr="आम्हाला कॉल करा:"><span>Call Us:</span> <a href="#">(+91) 809-078-5907</a></p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="single-top-right">
+                                        <!-- Social media links can be added here if needed -->
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="single-top-right">
+                                        <p><i class="fa fa-file-pdf-o"></i> <a target="_blank" href="assets/YRBG-images/Brochure.pdf" data-en="Download PDF" data-mr="पीडीएफ डाउनलोड करा">Download PDF</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="menu-container">
+                            <div class="row">
+                                <div class="col-md-11 col-sm-11">
+                                    <!-- Responsive Menu -->
+                                    <div class="bleezy-responsive-menu"></div>
+                                    <!-- Responsive Menu -->
+                                    <div class="mainmenu">
+                                        <nav>
+                                            <ul id="bleezy_navigation">
+                                                <li><a href="index.html" data-en="home" data-mr="मुख्यपृष्ठ">home</a></li>
+                                                <li><a href="about.html" data-en="about us" data-mr="आमच्याबद्दल">about us</a></li>
+                                                <li>
+                                                    <a href="#" data-en="services" data-mr="सेवा">services</a>
+                                                    <ul>
+                                                        <li><a href="security-guard.html" data-en="security guard" data-mr="सुरक्षा रक्षक">security guard</a></li>
+                                                        <li><a href="house-keeping.html" data-en="house keeping" data-mr="हाउस कीपिंग">house keeping</a></li>
+                                                        <li><a href="facility-management.html" data-en="facility management-Cleaning" data-mr="सुविधा व्यवस्थापन-सफाई">facility management-Cleaning</a></li>
+                                                        <li><a href="manpower-labour.html" data-en="manpower / labour supply" data-mr="मनुष्यबळ / कामगार पुरवठा">manpower / labour supply</a></li>
+                                                        <li><a href="contract-staffing.html" data-en="contract staffing / project planning" data-mr="कंत्राटी कर्मचारी / प्रकल्प नियोजन">contract staffing / project planning</a></li>
+                                                        <li><a href="pf-esic.html" data-en="pf esic & p.tax new reg." data-mr="पीएफ, ईएसआयसी आणि पी.टॅक्स नवीन नोंदणी">pf esic & p.tax new reg.</a></li>
+                                                        <li><a href="all-taxation.html" data-en="all taxation work" data-mr="सर्व कर कार्य">all taxation work</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="current-page-item"><a href="career.html" data-en="career" data-mr="करिअर">career</a></li>
+                                                <li><a href="blog.html" data-en="blog" data-mr="ब्लॉग">blog</a></li>
+                                                <li><a href="contact.html" data-en="contact" data-mr="संपर्क">contact</a></li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+                                <div class="col-md-1 col-sm-1">
+                                    <div class="header-search">
+                                        <div class="search-icon">
+                                            <i class="fa fa-search"></i>
+                                        </div>
+                                        <div class="search-form">
+                                            <form>
+                                                <input type="search" placeholder="Search..." data-en="Search..." data-mr="शोधा...">
+                                                <button type="submit"><i class="fa fa-search"></i></button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="language-toggle" id="languageToggle" data-en="Marathi" data-mr="English">Marathi</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Header Area End -->
+
+    <!-- Breadcrumb Area Start -->
+    <section class="bleezy-breadcromb-area">
+        <div class="breadcromb-top section_50">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="breadcromb-top-text" style="float:right;">
+                            <h2 data-en="Career" data-mr="करिअर">Career</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="breadcromb-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="breadcromb-bottom-text">
+                            <ul>
+                                <li><a href="index.html" data-en="home" data-mr="मुख्यपृष्ठ">home</a></li>
+                                <li><a href="#"><i class="fa fa-long-arrow-right"></i></a></li>
+                                <li data-en="career" data-mr="करिअर">career</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Area End -->
+
+    <!-- Career Page Start -->
+    <section class="bleezy-about-page section_100">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="about-left">
+                        <h2 data-en="Work with Yashraj Business Group" data-mr="यशराज बिझनेस ग्रुपसोबत काम करा">Work with Yashraj Business Group</h2>
+                        <p style="text-align:justify;" data-en="Yashraj Business Group Pvt. Ltd. is an Indian owned and operated private company that provides security guard services, facility management, manpower supply, and taxation services to clients nationwide across all industries. Our team is carefully recruited and well trained—we pride ourselves in being professional, responsive, and reliable." data-mr="यशराज बिझनेस ग्रुप प्रा. लि. ही भारतीय मालकीची आणि संचालित खाजगी कंपनी आहे जी सर्व उद्योगांमध्ये देशभरातील ग्राहकांना सुरक्षा रक्षक सेवा, सुविधा व्यवस्थापन, मनुष्यबळ पुरवठा आणि कर सेवा प्रदान करते. आमची टीम काळजीपूर्वक निवडली जाते आणि चांगले प्रशिक्षित आहे—आम्हाला व्यावसायिक, प्रतिसादात्मक आणि विश्वासार्ह असल्याचा अभिमान आहे.">Yashraj Business Group Pvt. Ltd. is an Indian owned and operated private company that provides security guard services, facility management, manpower supply, and taxation services to clients nationwide across all industries. Our team is carefully recruited and well trained—we pride ourselves in being professional, responsive, and reliable.</p>
+                        <p style="text-align:justify;" data-en="We are always looking for responsible, hardworking people to join the team here at Yashraj Business Group Pvt. Ltd. We have a high employee retention rate, which we attribute to the following key factors:" data-mr="आम्ही नेहमी जबाबदार, मेहनती लोकांना यशराज बिझनेस ग्रुप प्रा. लि. मधील टीममध्ये सामील होण्यासाठी शोधत असतो. आमच्याकडे कर्मचारी टिकवून ठेवण्याचा दर जास्त आहे, जो आम्ही खालील मुख्य घटकांना श्रेय देतो:">We are always looking for responsible, hardworking people to join the team here at Yashraj Business Group Pvt. Ltd. We have a high employee retention rate, which we attribute to the following key factors:</p>
+                        <div style="padding-left:17px;">
+                            <ul>
+                                <li style="list-style-type:disc" data-en="We value and respect our employees" data-mr="आम्ही आमच्या कर्मचाऱ्यांचा आदर आणि मूल्य ठेवतो">We value and respect our employees</li>
+                                <li style="list-style-type:disc" data-en="We look to employ professionals from the local communities in which we serve, understanding that they bring specialized knowledge, greater potential for continuity, and a stronger sense of personal investment to the challenge" data-mr="आम्ही स्थानिक समुदायांमधून व्यावसायिकांना नियुक्त करण्याचा प्रयत्न करतो, ज्यांना आम्ही सेवा देतो, हे समजून की ते विशेष ज्ञान, सातत्याची अधिक संभावना आणि आव्हानासाठी वैयक्तिक गुंतवणुकीची अधिक तीव्र भावना आणतात">We look to employ professionals from the local communities in which we serve, understanding that they bring specialized knowledge, greater potential for continuity, and a stronger sense of personal investment to the challenge</li>
+                                <li style="list-style-type:disc" data-en="We offer opportunities for advancement" data-mr="आम्ही प्रगतीच्या संधी प्रदान करतो">We offer opportunities for advancement</li>
+                                <li style="list-style-type:disc" data-en="Our professionals undergo a rigorous training regimen that includes classroom work" data-mr="आमचे व्यावसायिक वर्गातील कामासह कठोर प्रशिक्षण प्रणालीतून जातात">Our professionals undergo a rigorous training regimen that includes classroom work</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="about-right">
+                        <img src="assets/img/img 2.webp" alt="about image" data-en="Career Opportunities" data-mr="करिअर संधी" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Career Page End -->
+
+    <!-- Statement Area Start -->
+    <section class="bleezy-statement-area section_b_100">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="statement-left">
+                        <h2 data-en="Our Commitment" data-mr="आमची वचनबद्धता">Our Commitment</h2>
+                        <p style="text-align:justify;" data-en="Yashraj Business Group Pvt. Ltd. removes worries for clients who require security guards, facility management, or other services by providing excellent customer service and in-depth training for employees. Our program focuses on delivering services of the highest quality and exceeding client expectations, recognizing employees who are models for us all to follow. Gold Star Awardees receive beautiful gold-star pins to show our appreciation for their work. Employees who receive four stars are eligible for a commendation bar and a financial bonus." data-mr="यशराज बिझनेस ग्रुप प्रा. लि. ग्राहकांना सुरक्षा रक्षक, सुविधा व्यवस्थापन किंवा इतर सेवांची आवश्यकता असणाऱ्या ग्राहकांसाठी चिंता दूर करते, उत्कृष्ट ग्राहक सेवा आणि कर्मचाऱ्यांसाठी सखोल प्रशिक्षण प्रदान करते. आमचा कार्यक्रम सर्वोच्च गुणवत्तेच्या सेवा प्रदान करण्यावर आणि ग्राहकांच्या अपेक्षा ओलांडण्यावर केंद्रित आहे, जे कर्मचारी आम्हा सर्वांसाठी अनुकरणीय आहेत त्यांना ओळखतो. गोल्ड स्टार पुरस्कार प्राप्तकर्त्यांना त्यांच्या कामाबद्दल आमच्या कौतुकाचे प्रतीक म्हणून सुंदर गोल्ड-स्टार पिन मिळतात. जे कर्मचारी चार तारे मिळवतात ते प्रशस्तिपत्र बार आणि आर्थिक बोनससाठी पात्र ठरतात.">Yashraj Business Group Pvt. Ltd. removes worries for clients who require security guards, facility management, or other services by providing excellent customer service and in-depth training for employees. Our program focuses on delivering services of the highest quality and exceeding client expectations, recognizing employees who are models for us all to follow. Gold Star Awardees receive beautiful gold-star pins to show our appreciation for their work. Employees who receive four stars are eligible for a commendation bar and a financial bonus.</p>
+                        <br />
+                        <p data-en="Kindly send your RESUME to the following email ID: <a href='mailto:hr.yashrajsp@gmail.com' style='color:red;'><b>hr.yashrajsp@gmail.com</b></a> or call us at (+91) 809-078-5907." data-mr="कृपया आपला रेझ्युमे खालील ईमेल आयडीवर पाठवा: <a href='mailto:hr.yashrajsp@gmail.com' style='color:red;'><b>hr.yashrajsp@gmail.com</b></a> किंवा आम्हाला (+91) 809-078-5907 वर कॉल करा.">Kindly send your RESUME to the following email ID: <a href="mailto:hr.yashrajsp@gmail.com" style="color:red;"><b>hr.yashrajsp@gmail.com</b></a> or call us at (+91) 809-078-5907.</p>
+                        <br />
+                        <p><b data-en="Recipients will be awarded for outstanding efforts in the following areas:" data-mr="प्राप्तकर्त्यांना खालील क्षेत्रांमध्ये उत्कृष्ट प्रयत्नांसाठी पुरस्कृत केले जाईल:">Recipients will be awarded for outstanding efforts in the following areas:</b></p>
+                        <div style="padding-left:17px;">
+                            <ul>
+                                <li style="list-style-type:disc" data-en="Customer Service" data-mr="ग्राहक सेवा">Customer Service</li>
+                                <li style="list-style-type:disc" data-en="Leadership" data-mr="नेतृत्व">Leadership</li>
+                                <li style="list-style-type:disc" data-en="Teamwork" data-mr="संघकार्य">Teamwork</li>
+                                <li style="list-style-type:disc" data-en="Demonstration of a core value" data-mr="मुख्य मूल्याचे प्रदर्शन">Demonstration of a core value</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Statement Area End -->
+
+    <!-- Statement Bottom Area Start -->
+    <section class="bleezy-statement-bottom-area-career section_100">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="statement-bottom-wrap">
+                        <h2 data-en="What we offer" data-mr="आम्ही काय ऑफर करतो">What we offer</h2>
+                        <p data-en="Extremely Competitive Wages" data-mr="अत्यंत स्पर्धात्मक वेतन">Extremely Competitive Wages</p>
+                        <p data-en="All Uniform Items | Employee Bonuses | Industry Leading Training" data-mr="सर्व गणवेश आयटम | कर्मचारी बोनस | उद्योगात अग्रगण्य प्रशिक्षण">All Uniform Items | Employee Bonuses | Industry Leading Training</p>
+                        <a href="#" class="bleezy-btn" data-en="learn more" data-mr="अधिक जाणून घ्या">learn more</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Statement Bottom Area End -->
+
+    <!-- Career Section Start -->
+    <div class="career-section section-padding" style="margin: 30px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-title text-center" style="margin: 30px;">
+                        <h2 data-en="Current Job Openings" data-mr="सध्याच्या नोकरीच्या संधी">Current Job Openings</h2>
+                        <p data-en="Join our team and be part of our success story" data-mr="आमच्या टीममध्ये सामील व्हा आणि आमच्या यशोगाथेचा भाग व्हा">Join our team and be part of our success story</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" id="jobListings">
+                <!-- Job listings will be dynamically loaded here -->
+            </div>
+
+            <div class="application-form" id="applicationForm" style="display: none;">
+                <h3 class="text-center mb-4" data-en="Apply for" data-mr="साठी अर्ज करा">Apply for <span id="jobTitle"></span></h3>
+                <form id="submitApplication">
+                    <input type="hidden" id="jobId">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="name" data-en="Full Name" data-mr="पूर्ण नाव">Full Name</label>
+                                <input type="text" class="form-control" id="name" required data-en="Full Name" data-mr="पूर्ण नाव">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="email" data-en="Email" data-mr="ईमेल">Email</label>
+                                <input type="email" class="form-control" id="email" required data-en="Email" data-mr="ईमेल">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="phone" data-en="Phone" data-mr="फोन">Phone</label>
+                                <input type="tel" class="form-control" id="phone" required data-en="Phone" data-mr="फोन">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="resume" data-en="Resume (PDF only)" data-mr="रेझ्युमे (फक्त पीडीएफ)">Resume (PDF only)</label>
+                                <input type="file" class="form-control" id="resume" accept=".pdf" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="coverLetter" data-en="Cover Letter" data-mr="कव्हर लेटर">Cover Letter</label>
+                        <textarea class="form-control" id="coverLetter" rows="4" required data-en="Cover Letter" data-mr="कव्हर लेटर"></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-apply" data-en="Submit Application" data-mr="अर्ज सादर करा">Submit Application</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Career Section End -->
+
+    <!-- Footer Area Start -->
+    <footer class="bleezy-footer-area">
+        <div class="footer-top-area section_50">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-sm-3">
+                        <div class="single-footer-widget footer-logo-widget">
+                            <div class="footer-logo">
+                                <a href="index.html">
+                                    <img src="assets/YRBG-images/logo-yashraj-footer-png.png" alt="footer logo" />
+                                </a>
+                            </div>
+                            <div class="footer-widget-text">
+                                <p data-en="YASHRAJ BUSINESS GROUP PVT.LTD. (Formerly Known as YASHRAJ SECURITY) is a start-up company founded by Mr.Vaibhav Amrut Patil...." data-mr="यशराज बिझनेस ग्रुप प्रा.लि. (पूर्वी यशराज सिक्युरिटी म्हणून ओळखले जाणारे) ही श्री. वैभव अमृत पाटील यांनी स्थापन केलेली स्टार्ट-अप कंपनी आहे....">YASHRAJ BUSINESS GROUP PVT.LTD. (Formerly Known as YASHRAJ SECURITY) is a start-up company founded by Mr.Vaibhav Amrut Patil....</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-3">
+                        <div class="single-footer-widget">
+                            <h3 data-en="main links" data-mr="मुख्य दुवे">main links</h3>
+                            <ul>
+                                <li><a href="about.html" data-en="About us" data-mr="आमच्याबद्दल">About us</a></li>
+                                <li><a href="career.html" data-en="Career" data-mr="करिअर">Career</a></li>
+                                <li><a href="blog.html" data-en="Blog" data-mr="ब्लॉग">Blog</a></li>
+                                <li><a href="contact.html" data-en="Contact" data-mr="संपर्क">Contact</a></li>
+                                <li><a href="#" data-en="Privacy Policy" data-mr="गोपनीयता धोरण">Privacy Policy</a></li>
+                                <li><a href="#" data-en="Terms & Conditions" data-mr="अटी आणि शर्ती">Terms & Conditions</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-3">
+                        <div class="single-footer-widget">
+                            <h3 data-en="Newsletter" data-mr="वृत्तपत्र">Newsletter</h3>
+                            <p data-en="Don't miss to subscribe to our news feeds, kindly fill the form below." data-mr="आमच्या बातम्यांच्या फीड्सची सदस्यता घेण्यास चुकवू नका, कृपया खालील फॉर्म भरा.">Don't miss to subscribe to our news feeds, kindly fill the form below.</p>
+                            <form>
+                                <input type="email" placeholder="Subscribe" data-en="Subscribe" data-mr="सदस्यता घ्या">
+                                <button type="submit"><i class="fa fa-envelope-open-o"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="copyright-right">
+                            <p data-en="© Copyright Yashraj Business Group 2022. All rights reserved" data-mr="© कॉपीराइट यशराज बिझनेस ग्रुप 2022. सर्व हक्क राखीव">© Copyright <a href="#">Yashraj Business Group</a> 2022. All rights reserved</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Area End -->
+
+    <!-- All JS Here -->
+    <script src="assets/js/jquery-1.12.4.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/owl.carousel.min.js"></script>
+    <script src="assets/js/jquery.slicknav.min.js"></script>
+    <script src="assets/js/featherlight.js"></script>
+    <script src="assets/js/featherlight.gallery.js"></script>
+    <script src="assets/js/jquery.sticky.js"></script>
+    <script src="assets/js/main.js"></script>
+
+    <script>
+        // Language toggle functionality
+        const languageToggle = document.getElementById('languageToggle');
+        let currentLanguage = localStorage.getItem('language') || 'en';
+
+        function setLanguage(lang) {
+            // Update static text content
+            document.querySelectorAll('[data-en][data-mr]').forEach(element => {
+                element.textContent = element.getAttribute(`data-${lang}`);
+                // Update placeholder and label for input/textarea elements
+                if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                    if (element.hasAttribute('placeholder')) {
+                        element.placeholder = element.getAttribute(`data-${lang}`);
+                    }
+                }
+            });
+
+            // Update title
+            document.title = document.querySelector('title').getAttribute(`data-${lang}`);
+
+            // Update language toggle button text
+            languageToggle.textContent = lang === 'en' ? 'Marathi' : 'English';
+
+            // Update HTML lang attribute
+            document.documentElement.lang = lang === 'en' ? 'en' : 'mr';
+
+            // Save preference
+            localStorage.setItem('language', lang);
+            currentLanguage = lang;
+        }
+
+        // Initialize language
+        setLanguage(currentLanguage);
+
+        // Toggle language on click
+        languageToggle.addEventListener('click', () => {
+            setLanguage(currentLanguage === 'en' ? 'mr' : 'en');
+        });
+
+        // Job title translations (client-side fallback if API doesn't provide Marathi)
+        const jobTitleTranslations = {
+            'Security Guard': { en: 'Security Guard', mr: 'सुरक्षा रक्षक' },
+            'Facility Manager': { en: 'Facility Manager', mr: 'सुविधा व्यवस्थापक' },
+            // Add more job titles as needed
+        };
+
+        // Fetch and display jobs
+        async function loadJobs() {
+            try {
+                const response = await fetch('http://localhost:5000/api/jobs');
+                const jobs = await response.json();
+
+                const jobListings = document.getElementById('jobListings');
+                jobListings.innerHTML = jobs.map(job => `
+                    <div class="col-md-6">
+                        <div class="job-card">
+                            <h3 class="job-title" data-job-id="${job._id}">${currentLanguage === 'mr' && job.title_mr ? job.title_mr : (jobTitleTranslations[job.title]?.[currentLanguage] || job.title)}</h3>
+                            <div class="job-meta">
+                                <span><i class="fa fa-map-marker"></i> ${currentLanguage === 'mr' && job.location_mr ? job.location_mr : job.location}</span>
+                                <span><i class="fa fa-briefcase"></i> ${currentLanguage === 'mr' && job.type_mr ? job.type_mr : job.type}</span>
+                                <span><i class="fa fa-money"></i> ${currentLanguage === 'mr' && job.salary_mr ? job.salary_mr : job.salary}</span>
+                            </div>
+                            <p>${currentLanguage === 'mr' && job.description_mr ? job.description_mr : job.description}</p>
+                            <h4 data-en="Requirements:" data-mr="आवश्यकता:">Requirements:</h4>
+                            <ul>
+                                ${(currentLanguage === 'mr' && job.requirements_mr ? job.requirements_mr : job.requirements).map(req => `<li>${req}</li>`).join('')}
+                            </ul>
+                            <button class="btn btn-apply" onclick="showApplicationForm('${job._id}', '${currentLanguage === 'mr' && job.title_mr ? job.title_mr : (jobTitleTranslations[job.title]?.[currentLanguage] || job.title)}')" data-en="Apply Now" data-mr="आता अर्ज करा">
+                                Apply Now
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading jobs:', error);
+            }
+        }
+
+        // Show application form
+        function showApplicationForm(jobId, jobTitle) {
+            document.getElementById('applicationForm').style.display = 'block';
+            document.getElementById('jobTitle').textContent = jobTitle;
+            document.getElementById('jobId').value = jobId;
+            window.scrollTo(0, document.body.scrollHeight);
+        }
+
+        // Handle application submission
+        document.getElementById('submitApplication').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const formData = new FormData();
+            formData.append('job', document.getElementById('jobId').value);
+            formData.append('name', document.getElementById('name').value);
+            formData.append('email', document.getElementById('email').value);
+            formData.append('phone', document.getElementById('phone').value);
+            formData.append('resume', document.getElementById('resume').files[0]);
+            formData.append('coverLetter', document.getElementById('coverLetter').value);
+
+            try {
+                const response = await fetch('http://localhost:5000/api/applications', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (response.ok) {
+                    alert(currentLanguage === 'mr' ? 'अर्ज यशस्वीरित्या सादर झाला!' : 'Application submitted successfully!');
+                    document.getElementById('submitApplication').reset();
+                    document.getElementById('applicationForm').style.display = 'none';
+                } else {
+                    throw new Error('Failed to submit application');
+                }
+            } catch (error) {
+                console.error('Error submitting application:', error);
+                alert(currentLanguage === 'mr' ? 'अर्ज सादर करण्यात अयशस्वी. कृपया पुन्हा प्रयत्न करा.' : 'Failed to submit application. Please try again.');
+            }
+        });
+
+        // Load jobs when page loads
+        loadJobs();
+    </script>
+</body>
+</html>

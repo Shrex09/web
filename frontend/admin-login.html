@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-en="Admin Login - Yashraj Business Group" data-mr="प्रशासक लॉगिन - यशराज बिझनेस ग्रुप">Admin Login - Yashraj Business Group</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="stylesheet" href="assets/css/admin-login.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <div class="logo">
+                    <img src="assets/YRBG-images/logo-yashraj-png.png" alt="Yashraj Business Group" />
+                </div>
+                <h1 data-en="Admin Dashboard" data-mr="प्रशासक डॅशबोर्ड">Admin Dashboard</h1>
+                <p data-en="Please sign in to your account" data-mr="कृपया आपल्या खात्यात साइन इन करा">Please sign in to your account</p>
+            </div>
+            
+            <form id="loginForm" class="login-form">
+                <div class="form-group">
+                    <label for="username" data-en="Username" data-mr="वापरकर्तानाव">Username</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-user input-icon"></i>
+                        <input 
+                            type="text" 
+                            id="username" 
+                            name="username" 
+                            required 
+                            autocomplete="username"
+                            data-placeholder-en="Enter your username"
+                            data-placeholder-mr="आपले वापरकर्तानाव प्रविष्ट करा"
+                            placeholder="Enter your username"
+                        >
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password" data-en="Password" data-mr="पासवर्ड">Password</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-lock input-icon"></i>
+                        <input 
+                            type="password" 
+                            id="password" 
+                            name="password" 
+                            required 
+                            autocomplete="current-password"
+                            data-placeholder-en="Enter your password"
+                            data-placeholder-mr="आपला पासवर्ड प्रविष्ट करा"
+                            placeholder="Enter your password"
+                        >
+                        <button type="button" class="toggle-password" id="togglePassword">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="form-options">
+                    <label class="checkbox-wrapper">
+                        <input type="checkbox" id="remember">
+                        <span class="checkmark"></span>
+                        <span data-en="Remember me" data-mr="मला लक्षात ठेवा">Remember me</span>
+                    </label>
+                </div>
+                
+                <button type="submit" class="login-btn" id="loginBtn">
+                    <span class="btn-text" data-en="Sign In" data-mr="साइन इन करा">Sign In</span>
+                    <span class="btn-loader" style="display: none;">
+                        <i class="fas fa-spinner fa-spin"></i>
+                    </span>
+                </button>
+                
+                <div class="error-message" id="errorMessage" style="display: none;">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <span class="error-text"></span>
+                </div>
+            </form>
+            
+            <div class="login-footer">
+                <p data-en="© 2025 Yashraj Business Group. All rights reserved." data-mr="© 2025 यशराज बिझनेस ग्रुप. सर्व हक्क राखीव.">&copy; 2025 Yashraj Business Group. All rights reserved.</p>
+            </div>
+        </div>
+        
+        <!-- Language Toggle -->
+        <div class="language-selector">
+            <button id="languageToggle" class="language-toggle" data-en="मराठी" data-mr="English">मराठी</button>
+        </div>
+    </div>
+    
+    <script src="assets/js/admin-login.js"></script>
+</body>
+</html>

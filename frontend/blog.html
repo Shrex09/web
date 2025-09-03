@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Title -->
+    <title data-en="Yashraj Business Group - Blog" data-mr="यशराज बिझनेस ग्रुप - ब्लॉग">Yashraj Business Group - Blog</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/image.png">
+
+    <!-- Google Fonts for Marathi Support -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+
+    <!-- Font awesome CSS -->
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="assets/css/animate.min.css">
+
+    <!-- OwlCarousel CSS -->
+    <link rel="stylesheet" href="assets/css/owl.carousel.css">
+
+    <!-- Flaticon CSS -->
+    <link rel="stylesheet" href="assets/flaticon/flaticon.css">
+
+    <!-- SlickNav CSS -->
+    <link rel="stylesheet" href="assets/css/slicknav.min.css">
+
+    <!-- Featherlight CSS -->
+    <link rel="stylesheet" href="assets/css/featherlight.css">
+
+    <!-- Featherlight Gallery CSS -->
+    <link rel="stylesheet" href="assets/css/featherlight.gallery.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="assets/css/responsive.css">
+
+    <style>
+        /* Language toggle button */
+        .language-toggle {
+            margin-left: 20px;
+            cursor: pointer;
+            width: 75px;
+            color: #fff;
+            background: #e81a39;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .language-toggle:hover {
+            background: #c51432;
+        }
+
+        /* Ensure Marathi font support */
+        body, h1, h2, h3, h4, h5, h6, p, a, li, input, button {
+            font-family: 'Noto Sans Devanagari', sans-serif;
+        }
+
+        /* Style for 'Read More' button */
+        .read-more {
+            background: #e81a39;
+            color: #fff;
+            padding: 8px 15px;
+            border-radius: 3px;
+            text-transform: uppercase;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .read-more:hover {
+            background: #c51432;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        /* Pagination active state */
+        .pagination li.active a {
+            background: #e81a39;
+            color: #fff;
+        }
+
+        .pagination li a:hover {
+            background: #c51432;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header Area Start -->
+    <header class="bleezy-header-area">
+        <div class="header-right-overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="site-logo">
+                        <a href="index.html">
+                            <img src="assets/YRBG-images/logo-yashraj-png.png" alt="site logo" />
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="header-right">
+                        <div class="header-right-top">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="single-top-right">
+                                        <p data-en="Call Us:" data-mr="आम्हाला कॉल करा:"><span>Call Us:</span> <a href="#">(+91) 809-078-5907</a></p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="single-top-right">
+                                        <!-- Social media links can be added here if needed -->
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="single-top-right">
+                                        <p><i class="fa fa-file-pdf-o"></i> <a target="_blank" href="assets/YRBG-images/Brochure.pdf" data-en="Download PDF" data-mr="पीडीएफ डाउनलोड करा">Download PDF</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="menu-container">
+                            <div class="row">
+                                <div class="col-md-11 col-sm-11">
+                                    <!-- Responsive Menu -->
+                                    <div class="bleezy-responsive-menu"></div>
+                                    <!-- Responsive Menu -->
+                                    <div class="mainmenu">
+                                        <nav>
+                                            <ul id="bleezy_navigation">
+                                                <li><a href="index.html" data-en="home" data-mr="मुख्यपृष्ठ">home</a></li>
+                                                <li><a href="about.html" data-en="about us" data-mr="आमच्याबद्दल">about us</a></li>
+                                                <li>
+                                                    <a href="#" data-en="services" data-mr="सेवा">services</a>
+                                                    <ul>
+                                                        <li><a href="security-guard.html" data-en="security guard" data-mr="सुरक्षा रक्षक">security guard</a></li>
+                                                        <li><a href="house-keeping.html" data-en="house keeping" data-mr="हाउस कीपिंग">house keeping</a></li>
+                                                        <li><a href="facility-management.html" data-en="facility management-Cleaning" data-mr="सुविधा व्यवस्थापन-सफाई">facility management-Cleaning</a></li>
+                                                        <li><a href="manpower-labour.html" data-en="manpower / labour supply" data-mr="मनुष्यबळ / कामगार पुरवठा">manpower / labour supply</a></li>
+                                                        <li><a href="contract-staffing.html" data-en="contract staffing / project planning" data-mr="कंत्राटी कर्मचारी / प्रकल्प नियोजन">contract staffing / project planning</a></li>
+                                                        <li><a href="pf-esic.html" data-en="pf esic & p.tax new reg." data-mr="पीएफ, ईएसआयसी आणि पी.टॅक्स नवीन नोंदणी">pf esic & p.tax new reg.</a></li>
+                                                        <li><a href="all-taxation.html" data-en="all taxation work" data-mr="सर्व कर कार्य">all taxation work</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li><a href="career.html" data-en="career" data-mr="करिअर">career</a></li>
+                                                <li class="current-page-item"><a href="blog.html" data-en="blog" data-mr="ब्लॉग">blog</a></li>
+                                                <li><a href="contact.html" data-en="contact" data-mr="संपर्क">contact</a></li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+                                <div class="col-md-1 col-sm-1">
+                                    <div class="header-search">
+                                        <div class="search-icon">
+                                            <i class="fa fa-search"></i>
+                                        </div>
+                                        <div class="search-form">
+                                            <form>
+                                                <input type="search" placeholder="Search..." data-en="Search..." data-mr="शोधा...">
+                                                <button type="submit"><i class="fa fa-search"></i></button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="language-toggle" id="languageToggle" data-en="Marathi" data-mr="English">Marathi</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Header Area End -->
+
+    <!-- Breadcrumb Area Start -->
+    <section class="bleezy-breadcromb-area">
+        <div class="breadcromb-top section_50">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="breadcromb-top-text" style="float:right;">
+                            <h2 data-en="Blogs" data-mr="ब्लॉग">Blogs</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="breadcromb-bottom-text">
+                        <ul>
+                            <li><a href="index.html" data-en="home" data-mr="मुख्यपृष्ठ">home</a></li>
+                            <li><a href="#"><i class="fa fa-long-arrow-right"></i></a></li>
+                            <li data-en="Blog" data-mr="ब्लॉग">Blog</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Area End -->
+
+    <!-- Blog List Section Start -->
+    <section class="blog-area section_70">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="row" id="blogContainer">
+                        <!-- Blog posts will be loaded here -->
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="pagination-box">
+                                <ul class="pagination">
+                                    <li><a href="#" data-en="Previous" data-mr="मागील"><i class="fa fa-angle-double-left"></i></a></li>
+                                    <li class="active"><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#" data-en="Next" data-mr="पुढील"><i class="fa fa-angle-double-right"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="col-md-4">
+                    <div class="blog-sidebar">
+                        <!-- Search Widget -->
+                        <div class="single-sidebar">
+                            <form>
+                                <input type="search" placeholder="Search..." data-en="Search..." data-mr="शोधा...">
+                                <button type="submit"><i class="fa fa-search"></i></button>
+                            </form>
+                        </div>
+
+                        <!-- Recent Posts Widget -->
+                        <div class="single-sidebar">
+                            <h3 data-en="Recent Posts" data-mr="अलीकडील पोस्ट">Recent Posts</h3>
+                            <div class="recent-post" id="recentPostsContainer">
+                                <!-- Recent posts will be loaded here -->
+                            </div>
+                        </div>
+
+                        <!-- Categories Widget -->
+                        <div class="single-sidebar">
+                            <h3 data-en="Categories" data-mr="श्रेणी">Categories</h3>
+                            <ul>
+                                <li><a href="#" data-en="Security Services" data-mr="सुरक्षा सेवा">Security Services</a></li>
+                                <li><a href="#" data-en="Business Updates" data-mr="व्यवसाय अपडेट्स">Business Updates</a></li>
+                                <li><a href="#" data-en="Industry News" data-mr="उद्योग बातम्या">Industry News</a></li>
+                                <li><a href="#" data-en="Facility Management" data-mr="सुविधा व्यवस्थापन">Facility Management</a></li>
+                                <li><a href="#" data-en="Company Announcements" data-mr="कंपनी घोषणा">Company Announcements</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Blog List Section End -->
+
+    <!-- Footer Area Start -->
+    <footer class="bleezy-footer-area">
+        <div class="footer-top-area section_50">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-sm-3">
+                        <div class="single-footer-widget footer-logo-widget">
+                            <div class="footer-logo">
+                                <a href="index.html">
+                                    <img src="assets/YRBG-images/logo-yashraj-footer-png.png" alt="footer logo" />
+                                </a>
+                            </div>
+                            <div class="footer-widget-text">
+                                <p data-en="Yashraj Business Group Pvt. Ltd. is a start-up company founded by Mr. Vaibhav Amrut Patil, offering security, facility management, manpower, and taxation services." data-mr="यशराज बिझनेस ग्रुप प्रा. लि. ही श्री. वैभव अमृत पाटील यांनी स्थापन केलेली स्टार्ट-अप कंपनी आहे, जी सुरक्षा, सुविधा व्यवस्थापन, मनुष्यबळ आणि कर सेवा प्रदान करते.">Yashraj Business Group Pvt. Ltd. is a start-up company founded by Mr. Vaibhav Amrut Patil, offering security, facility management, manpower, and taxation services.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-3">
+                        <div class="single-footer-widget">
+                            <h3 data-en="Main Links" data-mr="मुख्य दुवे">Main Links</h3>
+                            <ul>
+                                <li><a href="about.html" data-en="About Us" data-mr="आमच्याबद्दल">About Us</a></li>
+                                <li><a href="career.html" data-en="Career" data-mr="करिअर">Career</a></li>
+                                <li><a href="blog.html" data-en="Blog" data-mr="ब्लॉग">Blog</a></li>
+                                <li><a href="contact.html" data-en="Contact" data-mr="संपर्क">Contact</a></li>
+                                <li><a href="#" data-en="Privacy Policy" data-mr="गोपनीयता धोरण">Privacy Policy</a></li>
+                                <li><a href="#" data-en="Terms & Conditions" data-mr="अटी आणि शर्ती">Terms & Conditions</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-3">
+                        <div class="single-footer-widget">
+                            <h3 data-en="Newsletter" data-mr="वृत्तपत्र">Newsletter</h3>
+                            <p data-en="Don't miss to subscribe to our news feeds, kindly fill the form below." data-mr="आमच्या बातम्यांच्या फीड्सची सदस्यता घेण्यास चुकवू नका, कृपया खालील फॉर्म भरा.">Don't miss to subscribe to our news feeds, kindly fill the form below.</p>
+                            <form>
+                                <input type="email" placeholder="Subscribe" data-en="Subscribe" data-mr="सदस्यता घ्या">
+                                <button type="submit"><i class="fa fa-envelope-open-o"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="copyright-right">
+                            <p data-en="© Copyright Yashraj Business Group 2022. All rights reserved" data-mr="© कॉपीराइट यशराज बिझनेस ग्रुप 2022. सर्व हक्क राखीव">© Copyright <a href="#">Yashraj Business Group</a> 2022. All rights reserved</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Area End -->
+
+    <!-- JavaScript Files -->
+    <script src="assets/js/jquery-1.12.4.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/owl.carousel.min.js"></script>
+    <script src="assets/js/jquery.slicknav.min.js"></script>
+    <script src="assets/js/featherlight.js"></script>
+    <script src="assets/js/featherlight.gallery.js"></script>
+    <script src="assets/js/main.js"></script>
+
+    <script>
+        // Language toggle functionality
+        const languageToggle = document.getElementById('languageToggle');
+        let currentLanguage = localStorage.getItem('language') || 'en';
+
+        function setLanguage(lang) {
+            // Update static text content
+            document.querySelectorAll('[data-en][data-mr]').forEach(element => {
+                element.textContent = element.getAttribute(`data-${lang}`);
+                // Update placeholder for input elements
+                if (element.tagName === 'INPUT') {
+                    element.placeholder = element.getAttribute(`data-${lang}`);
+                }
+            });
+
+            // Update title
+            document.title = document.querySelector('title').getAttribute(`data-${lang}`);
+
+            // Update language toggle button text
+            languageToggle.textContent = lang === 'en' ? 'Marathi' : 'English';
+
+            // Update HTML lang attribute
+            document.documentElement.lang = lang === 'en' ? 'en' : 'mr';
+
+            // Save preference
+            localStorage.setItem('language', lang);
+            currentLanguage = lang;
+
+            // Reload blogs to reflect language change
+            fetchBlogs();
+        }
+
+        // Initialize language
+        setLanguage(currentLanguage);
+
+        // Toggle language on click
+        languageToggle.addEventListener('click', () => {
+            setLanguage(currentLanguage === 'en' ? 'mr' : 'en');
+        });
+
+        // Category translations (client-side fallback)
+        const categoryTranslations = {
+            'Security Services': { en: 'Security Services', mr: 'सुरक्षा सेवा' },
+            'Business Updates': { en: 'Business Updates', mr: 'व्यवसाय अपडेट्स' },
+            'Industry News': { en: 'Industry News', mr: 'उद्योग बातम्या' },
+            'Facility Management': { en: 'Facility Management', mr: 'सुविधा व्यवस्थापन' },
+            'Company Announcements': { en: 'Company Announcements', mr: 'कंपनी घोषणा' }
+        };
+
+        // Error messages translations
+        const errorMessages = {
+            noBlogs: {
+                en: 'No blogs found. Check back later for updates.',
+                mr: 'कोणतेही ब्लॉग सापडले नाहीत. नंतर अपडेटसाठी तपासा.'
+            },
+            failedToLoad: {
+                en: 'Failed to load blogs. Please try again later.',
+                mr: 'ब्लॉग लोड करण्यात अयशस्वी. कृपया नंतर पुन्हा प्रयत्न करा.'
+            }
+        };
+
+        // Fetch all blogs when the page loads
+        document.addEventListener('DOMContentLoaded', fetchBlogs);
+
+        // Function to fetch blogs from the API
+        function fetchBlogs() {
+            fetch('http://localhost:5000/api/blogs')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(blogs => {
+                    displayBlogs(blogs);
+                    displayRecentPosts(blogs.slice(0, 5)); // Show 5 most recent posts in sidebar
+                })
+                .catch(error => {
+                    console.error('Error fetching blogs:', error);
+                    document.getElementById('blogContainer').innerHTML = `
+                        <div class="col-md-12">
+                            <div class="alert alert-warning">
+                                ${errorMessages.failedToLoad[currentLanguage]}
+                            </div>
+                        </div>
+                    `;
+                });
+        }
+
+        // Function to display blogs in the main container
+        function displayBlogs(blogs) {
+            const blogContainer = document.getElementById('blogContainer');
+            blogContainer.innerHTML = '';
+
+            if (blogs.length === 0) {
+                blogContainer.innerHTML = `
+                    <div class="col-md-12">
+                        <div class="alert alert-info">
+                            ${errorMessages.noBlogs[currentLanguage]}
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+
+            blogs.forEach(blog => {
+                const date = new Date(blog.createdAt);
+                const formattedDate = date.toLocaleDateString(currentLanguage === 'en' ? 'en-US' : 'mr-IN', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+
+                const blogHtml = `
+                    <div class="col-md-6">
+                        <div class="single-blog">
+                            <div class="blog-image">
+                                <img src="${blog.image}" alt="${currentLanguage === 'mr' && blog.title_mr ? blog.title_mr : blog.title}">
+                                <div class="post-date">
+                                    <p>${date.getDate()}<span>${date.toLocaleDateString(currentLanguage === 'en' ? 'en-US' : 'mr-IN', {month: 'short'})}</span></p>
+                                </div>
+                            </div>
+                            <div class="blog-details">
+                                <h3><a href="blog-single.html?id=${blog._id}">${currentLanguage === 'mr' && blog.title_mr ? blog.title_mr : blog.title}</a></h3>
+                                <div class="post-meta">
+                                    <p data-en="By" data-mr="द्वारा">By <a href="#">${blog.author.username}</a> | <a href="#">${formattedDate}</a></p>
+                                </div>
+                                <p>${(currentLanguage === 'mr' && blog.content_mr ? blog.content_mr : blog.content).substring(0, 150)}${blog.content.length > 150 ? '...' : ''}</p>
+                                <a href="blog-single.html?id=${blog._id}" class="read-more" data-en="Read More" data-mr="अधिक वाचा">Read More <i class="fa fa-angle-double-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                blogContainer.innerHTML += blogHtml;
+            });
+        }
+
+        // Function to display recent posts in the sidebar
+        function displayRecentPosts(blogs) {
+            const recentPostsContainer = document.getElementById('recentPostsContainer');
+            recentPostsContainer.innerHTML = '';
+
+            blogs.forEach(blog => {
+                const date = new Date(blog.createdAt);
+                const formattedDate = date.toLocaleDateString(currentLanguage === 'en' ? 'en-US' : 'mr-IN', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric'
+                });
+
+                const recentPostHtml = `
+                    <div class="single-recent-post">
+                        <div class="recent-post-img">
+                            <a href="blog-single.html?id=${blog._id}">
+                                <img src="${blog.image}" alt="${currentLanguage === 'mr' && blog.title_mr ? blog.title_mr : blog.title}">
+                            </a>
+                        </div>
+                        <div class="recent-post-text">
+                            <h4><a href="blog-single.html?id=${blog._id}">${currentLanguage === 'mr' && blog.title_mr ? blog.title_mr : blog.title}</a></h4>
+                            <p>${formattedDate}</p>
+                        </div>
+                    </div>
+                `;
+                
+                recentPostsContainer.innerHTML += recentPostHtml;
+            });
+        }
+    </script>
+</body>
+</html>

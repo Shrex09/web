@@ -1,0 +1,1771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yashraj Business Group - Admin Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #334155;
+            line-height: 1.6;
+        }
+        .dashboard-container {
+            display: flex;
+            min-height: 100vh;
+        }
+        /* Sidebar Styles - Using company red theme */
+        .sidebar {
+            width: 280px;
+            background: linear-gradient(180deg, #e81a39 0%, #c51432 100%);
+            color: white;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            transition: transform 0.3s ease-in-out;
+            z-index: 1000;
+            box-shadow: 4px 0 15px rgba(232, 26, 57, 0.15);
+        }
+        .sidebar.collapsed {
+            transform: translateX(-100%);
+        }
+        .sidebar-header {
+            padding: 2rem 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(0, 0, 0, 0.1);
+        }
+        .sidebar-logo {
+            width: 140px;
+            height: auto;
+            margin-bottom: 0.5rem;
+        }
+        .sidebar-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #fff;
+            opacity: 0.9;
+        }
+        .sidebar-nav {
+            padding: 1rem 0;
+        }
+        .nav-item {
+            display: block;
+            padding: 0.875rem 1.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+            font-weight: 500;
+        }
+        .nav-item:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+            color: #fff;
+            border-left-color: #fff;
+            transform: translateX(5px);
+        }
+        .nav-item.active {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            border-left-color: #fff;
+        }
+        .nav-item i {
+            margin-right: 0.75rem;
+            width: 16px;
+        }
+        /* Main Content Styles */
+        .main-content {
+            flex: 1;
+            margin-left: 280px;
+            transition: margin-left 0.3s ease-in-out;
+        }
+        .main-content.sidebar-collapsed {
+            margin-left: 0;
+        }
+        /* Header Styles */
+        .header {
+            background: white;
+            padding: 1.25rem 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid #e81a39;
+        }
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .header-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #e81a39;
+        }
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #e81a39;
+            padding: 0.5rem;
+        }
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .admin-info {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.5rem 1rem;
+            background: #f8fafc;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+        .admin-avatar {
+            width: 32px;
+            height: 32px;
+            background: #e81a39;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+        /* Content Area Styles */
+        .content {
+            padding: 2rem;
+        }
+        .page-section {
+            display: none;
+        }
+        .page-section.active {
+            display: block;
+        }
+        .welcome-section {
+            background: linear-gradient(135deg, #e81a39 0%, #c51432 100%);
+            color: white;
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(232, 26, 57, 0.25);
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .welcome-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="30" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2"/><circle cx="50" cy="50" r="20" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></svg>');
+            opacity: 0.3;
+        }
+        .welcome-message {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            position: relative;
+            z-index: 1;
+        }
+        .welcome-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .stat-card {
+            background: white;
+            padding: 1.75rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            border-top: 4px solid #e81a39;
+            transition: transform 0.2s ease;
+        }
+        .stat-card:hover {
+            transform: translateY(-2px);
+        }
+        .stat-number {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: #e81a39;
+            margin-bottom: 0.5rem;
+        }
+        .stat-label {
+            color: #64748b;
+            font-weight: 500;
+        }
+        /* Management Section Styles */
+        .management-section {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        .section-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #f1f5f9;
+        }
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1e293b;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .section-title i {
+            color: #e81a39;
+        }
+        /* Form Styles */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #374151;
+        }
+        .form-input, .form-textarea, .form-select {
+            width: 100%;
+            padding: 0.875rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        .form-input:focus, .form-textarea:focus, .form-select:focus {
+            outline: none;
+            border-color: #e81a39;
+        }
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.875rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        .btn-primary {
+            background: #e81a39;
+            color: white;
+        }
+        .btn-primary:hover {
+            background: #c51432;
+            transform: translateY(-1px);
+        }
+        .btn-secondary {
+            background: #64748b;
+            color: white;
+        }
+        .btn-secondary:hover {
+            background: #475569;
+        }
+        .btn-success {
+            background: #059669;
+            color: white;
+        }
+        .btn-success:hover {
+            background: #047857;
+        }
+        .btn-danger {
+            background: #ef4444;
+            color: white;
+        }
+        .btn-danger:hover {
+            background: #dc2626;
+        }
+        /* Table Styles */
+        .table-container {
+            overflow-x: auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .data-table th {
+            background: linear-gradient(90deg, #f1f5f9 0%, #f8fafc 100%);
+            padding: 1rem 1.5rem;
+            text-align: left;
+            font-weight: 600;
+            color: #475569;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        .data-table td {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .data-table tr:hover {
+            background-color: rgba(232, 26, 57, 0.04);
+        }
+        .action-btn {
+            padding: 0.5rem;
+            margin: 0 0.25rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.875rem;
+        }
+        .edit-btn {
+            background: #3b82f6;
+            color: white;
+        }
+        .delete-btn {
+            background: #ef4444;
+            color: white;
+        }
+        /* Image Preview */
+        .image-preview {
+            max-width: 200px;
+            max-height: 100px;
+            border-radius: 8px;
+            margin-top: 0.5rem;
+        }
+        /* Sidebar Overlay for Mobile */
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 999;
+        }
+        .sidebar-overlay.active {
+            display: block;
+        }
+        /* Success Message */
+        .success-message {
+            background: #dcfce7;
+            color: #166534;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border-left: 4px solid #22c55e;
+            display: none;
+        }
+
+        /* Modal Styles */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+        .modal-message {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            color: #1e293b;
+        }
+        .modal-actions {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                width: 260px;
+            }
+            .sidebar.active {
+                transform: translateX(0);
+            }
+            .main-content {
+                margin-left: 0;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            .header {
+                padding: 1rem;
+            }
+            .header-title {
+                font-size: 1.5rem;
+            }
+            .content {
+                padding: 1rem;
+            }
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            .admin-info {
+                display: none;
+            }
+            .management-section {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <nav class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <svg class="sidebar-logo" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="200" height="60" fill="white" rx="4"/>
+                    <text x="100" y="25" text-anchor="middle" fill="#e81a39" font-family="Arial, sans-serif" font-weight="bold" font-size="14">YASHRAJ</text>
+                    <text x="100" y="40" text-anchor="middle" fill="#e81a39" font-family="Arial, sans-serif" font-size="10">BUSINESS GROUP</text>
+                    <text x="100" y="52" text-anchor="middle" fill="#666" font-family="Arial, sans-serif" font-size="8">ADMIN PANEL</text>
+                </svg>
+            </div>
+            <div class="sidebar-nav">
+                <a href="#" class="nav-item active" data-section="dashboard">
+                    <i class="fa fa-home"></i>Dashboard
+                </a>
+                <a href="#" class="nav-item" data-section="hero-slider">
+                    <i class="fa fa-image"></i>Hero Slider
+                </a>
+                <a href="#" class="nav-item" data-section="promo">
+                    <i class="fa fa-star"></i>Promo Section
+                </a>
+                <a href="#" class="nav-item" data-section="services">
+                    <i class="fa fa-cogs"></i>Services
+                </a>
+                <a href="#" class="nav-item" data-section="counters">
+                    <i class="fa fa-bar-chart"></i>Counter Stats
+                </a>
+                <a href="#" class="nav-item" data-section="testimonials">
+                    <i class="fa fa-comments"></i>Testimonials
+                </a>
+                <a href="#" class="nav-item" data-section="gallery">
+                    <i class="fa fa-picture-o"></i>Gallery
+                </a>
+                <a href="#" class="nav-item" data-section="clients">
+                    <i class="fa fa-building"></i>Client Logos
+                </a>
+                <a href="#" class="nav-item" data-section="contact">
+                    <i class="fa fa-phone"></i>Contact Info
+                </a>
+                <a href="#" class="nav-item" data-section="employees">
+                    <i class="fa fa-users"></i>Employees
+                </a>
+                <a href="#" class="nav-item" data-section="settings">
+                    <i class="fa fa-cog"></i>Settings
+                </a>
+                <a href="#" class="nav-item" id="logoutBtn">
+                    <i class="fa fa-sign-out"></i>Logout
+                </a>
+            </div>
+        </nav>
+        <!-- Sidebar Overlay for Mobile -->
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+        <!-- Main Content -->
+        <div class="main-content" id="mainContent">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <button class="menu-toggle" id="menuToggle">☰</button>
+                    <h1 class="header-title">Admin Dashboard</h1>
+                </div>
+                <div class="header-right">
+                    <div class="admin-info">
+                        <div class="admin-avatar">YA</div>
+                        <span>Yashraj Admin</span>
+                    </div>
+                </div>
+            </header>
+            <!-- Content Area -->
+            <main class="content">
+                <!-- Dashboard Section -->
+                <section class="page-section active" id="dashboard-section">
+                    <!-- Welcome Section -->
+                    <div class="welcome-section">
+                        <h2 class="welcome-message">Welcome, Admin!</h2>
+                        <p class="welcome-subtitle">Manage Yashraj Business Group website and operations from this centralized dashboard</p>
+                    </div>
+                    <!-- Stats Grid -->
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number">145</div>
+                            <div class="stat-label">Active Security Guards</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">67</div>
+                            <div class="stat-label">Active Clients</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">23</div>
+                            <div class="stat-label">Housekeeping Staff</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">8</div>
+                            <div class="stat-label">New Enquiries</div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Hero Slider Management -->
+                <section class="page-section" id="hero-slider-section">
+                    <div class="management-section">
+                        <div class="section-header">
+                            <h2 class="section-title">
+                                <i class="fa fa-image"></i>Hero Slider Management
+                            </h2>
+                        </div>
+                        <div class="success-message" id="hero-success">Hero slider updated successfully!</div>
+                        <div id="hero-slides-container">
+                            <!-- Slide 1 -->
+                            <div class="form-group">
+                                <h3 style="color: #e81a39; margin-bottom: 1rem;">Slide 1 - Security Services</h3>
+                                <div class="form-grid">
+                                    <div>
+                                        <label class="form-label">Title (English)</label>
+                                        <input type="text" class="form-input" id="slide1-title-en" value="yashraj security Guard & bouncers services">
+                                    </div>
+                                    <div>
+                                        <label class="form-label">Title (Marathi)</label>
+                                        <input type="text" class="form-input" id="slide1-title-mr" value="यशराज सुरक्षा रक्षक आणि बाउन्सर सेवा">
+                                    </div>
+                                    <div>
+                                        <label class="form-label">Description (English)</label>
+                                        <textarea class="form-textarea" id="slide1-desc-en">We provide security guard services to Corporate, Industrial, Residential, Bank & ATMs, IT, Hospitals & Malls</textarea>
+                                    </div>
+                                    <div>
+                                        <label class="form-label">Description (Marathi)</label>
+                                        <textarea class="form-textarea" id="slide1-desc-mr">आम्ही कॉर्पोरेट, औद्योगिक, निवासी, बँक आणि एटीएम, आयटी, हॉस्पिटल आणि मॉल्ससाठी सुरक्षा रक्षक सेवा प्रदान करतो</textarea>
+                                    </div>
+                                    <div>
+                                        <label class="form-label">Button Text (English)</label>
+                                        <input type="text" class="form-input" id="slide1-btn-en" value="Know More..">
+                                    </div>
+                                    <div>
+                                        <label class="form-label">Button Text (Marathi)</label>
+                                        <input type="text" class="form-input" id="slide1-btn-mr" value="अधिक जाणून घ्या..">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Slide 2 -->
+                            <div class="form-group">
+                                <h3 style="color: #e81a39; margin-bottom: 1rem;">Slide 2 - House Keeping</h3>
+                                <div class="form-grid">
+                                    <div>
+                                        <label class="form-label">Title (English)</label>
+                                        <input type="text" class="form-input" id="slide2-title-en" value="Yashraj House Keeping services">
+                                    </div>
+                                    <div>
+                                        <label class="form-label">Title (Marathi)</label>
+                                        <input type="text" class="form-input" id="slide2-title-mr" value="यशराज हाउस कीपिंग सेवा">
+                                    </div>
+                                    <div>
+                                        <label class="form-label">Description (English)</label>
+                                        <textarea class="form-textarea" id="slide2-desc-en">We provide complete house keeping, fog sanitization & facility management services for corporate, residential & IT</textarea>
+                                    </div>
+                                    <div>
+                                        <label class="form-label">Description (Marathi)</label>
+                                        <textarea class="form-textarea" id="slide2-desc-mr">आम्ही कॉर्पोरेट, निवासी आणि आयटीसाठी पूर्ण हाउस कीपिंग, फॉग सॅनिटायझेशन आणि सुविधा व्यवस्थापन सेवा प्रदान करतो</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Slide 3 -->
+                            <div class="form-group">
+                                <h3 style="color: #e81a39; margin-bottom: 1rem;">Slide 3 - Taxation Consultancy</h3>
+                                <div class="form-grid">
+                                    <div>
+                                        <label class="form-label">Title (English)</label>
+                                        <input type="text" class="form-input" id="slide3-title-en" value="Yashraj Taxway Consultancy">
+                                    </div>
+                                    <div>
+                                        <label class="form-label">Title (Marathi)</label>
+                                        <input type="text" class="form-input" id="slide3-title-mr" value="यशराज टॅक्सवे सल्लागार">
+                                    </div>
+                                    <div>
+                                        <label class="form-label">Description (English)</label>
+                                        <textarea class="form-textarea" id="slide3-desc-en">We provide all taxation work, Business Registrations & Licenses, GST, PF, ESI & Monthly compliances</textarea>
+                                    </div>
+                                    <div>
+                                        <label class="form-label">Description (Marathi)</label>
+                                        <textarea class="form-textarea" id="slide3-desc-mr">आम्ही सर्व कर कार्य, व्यवसाय नोंदणी आणि परवाने, जीएसटी, पीएफ, ईएसआय आणि मासिक पालन प्रदान करतो</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" onclick="saveHeroSlider()">
+                            <i class="fa fa-save"></i> Save Hero Slider
+                        </button>
+                    </div>
+                </section>
+                <!-- Services Management -->
+                <section class="page-section" id="services-section">
+                    <div class="management-section">
+                        <div class="section-header">
+                            <h2 class="section-title">
+                                <i class="fa fa-cogs"></i>Services Management
+                            </h2>
+                        </div>
+                        <div class="success-message" id="services-success">Services updated successfully!</div>
+                        <div class="form-group">
+                            <h3 style="color: #e81a39; margin-bottom: 1rem;">Section Heading</h3>
+                            <div class="form-grid">
+                                <div>
+                                    <label class="form-label">Main Heading (English)</label>
+                                    <input type="text" class="form-input" id="services-heading-en" value="our services">
+                                </div>
+                                <div>
+                                    <label class="form-label">Main Heading (Marathi)</label>
+                                    <input type="text" class="form-input" id="services-heading-mr" value="आमच्या सेवा">
+                                </div>
+                                <div>
+                                    <label class="form-label">Sub Heading (English)</label>
+                                    <input type="text" class="form-input" id="services-subheading-en" value="What We Offer">
+                                </div>
+                                <div>
+                                    <label class="form-label">Sub Heading (Marathi)</label>
+                                    <input type="text" class="form-input" id="services-subheading-mr" value="आम्ही काय ऑफर करतो">
+                                </div>
+                            </div>
+                        </div>
+                        <h3 style="color: #e81a39; margin-bottom: 1rem;">Add New Service</h3>
+                        <div class="form-grid">
+                            <div>
+                                <label class="form-label">Service Name (English)</label>
+                                <input type="text" class="form-input" id="new-service-name-en" placeholder="Enter service name in English">
+                            </div>
+                            <div>
+                                <label class="form-label">Service Name (Marathi)</label>
+                                <input type="text" class="form-input" id="new-service-name-mr" placeholder="Enter service name in Marathi">
+                            </div>
+                            <div>
+                                <label class="form-label">Description (English)</label>
+                                <textarea class="form-textarea" id="new-service-desc-en" placeholder="Enter description in English"></textarea>
+                            </div>
+                            <div>
+                                <label class="form-label">Description (Marathi)</label>
+                                <textarea class="form-textarea" id="new-service-desc-mr" placeholder="Enter description in Marathi"></textarea>
+                            </div>
+                            <div>
+                                <label class="form-label">Icon Class</label>
+                                <input type="text" class="form-input" id="new-service-icon" placeholder="e.g., flaticon-security-camera">
+                            </div>
+                        </div>
+                        <button class="btn btn-success" onclick="addService()">
+                            <i class="fa fa-plus"></i> Add Service
+                        </button>
+                        <div class="table-container" style="margin-top: 2rem;">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Service Name (EN)</th>
+                                        <th>Service Name (MR)</th>
+                                        <th>Description (EN)</th>
+                                        <th>Icon</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="services-table"></tbody>
+                            </table>
+                        </div>
+                        <button class="btn btn-primary" onclick="saveServices()" style="margin-top: 1rem;">
+                            <i class="fa fa-save"></i> Save Services
+                        </button>
+                    </div>
+                </section>
+                <!-- Counter Stats Management -->
+                <section class="page-section" id="counters-section">
+                    <div class="management-section">
+                        <div class="section-header">
+                            <h2 class="section-title">
+                                <i class="fa fa-bar-chart"></i>Counter Statistics Management
+                            </h2>
+                        </div>
+                        <div class="success-message" id="counters-success">Counter statistics updated successfully!</div>
+                        <div class="form-grid">
+                            <div>
+                                <label class="form-label">Section Title (English)</label>
+                                <input type="text" class="form-input" id="counter-title-en" value="We will guard & provide you safe & protected environment">
+                            </div>
+                            <div>
+                                <label class="form-label">Section Title (Marathi)</label>
+                                <input type="text" class="form-input" id="counter-title-mr" value="आम्ही संरक्षण करू आणि तुम्हाला सुरक्षित आणि संरक्षित वातावरण प्रदान करू">
+                            </div>
+                        </div>
+                        <h3 style="color: #e81a39; margin: 2rem 0 1rem 0;">Counter Statistics</h3>
+                        <div class="form-grid">
+                            <div>
+                                <label class="form-label">Registered Offices Count</label>
+                                <input type="number" class="form-input" id="counter1-number" value="2">
+                                <label class="form-label" style="margin-top: 0.5rem;">Label (English)</label>
+                                <input type="text" class="form-input" id="counter1-label-en" value="Registered Offices">
+                                <label class="form-label" style="margin-top: 0.5rem;">Label (Marathi)</label>
+                                <input type="text" class="form-input" id="counter1-label-mr" value="नोंदणीकृत कार्यालये">
+                            </div>
+                            <div>
+                                <label class="form-label">Cities Covered Count</label>
+                                <input type="number" class="form-input" id="counter2-number" value="16">
+                                <label class="form-label" style="margin-top: 0.5rem;">Label (English)</label>
+                                <input type="text" class="form-input" id="counter2-label-en" value="+ Cities Covered">
+                                <label class="form-label" style="margin-top: 0.5rem;">Label (Marathi)</label>
+                                <input type="text" class="form-input" id="counter2-label-mr" value="+ शहरे कव्हर केली">
+                            </div>
+                            <div>
+                                <label class="form-label">Quality Services Count</label>
+                                <input type="number" class="form-input" id="counter3-number" value="110">
+                                <label class="form-label" style="margin-top: 0.5rem;">Label (English)</label>
+                                <input type="text" class="form-input" id="counter3-label-en" value="Quality Services">
+                                <label class="form-label" style="margin-top: 0.5rem;">Label (Marathi)</label>
+                                <input type="text" class="form-input" id="counter3-label-mr" value="गुणवत्ता सेवा">
+                            </div>
+                            <div>
+                                <label class="form-label">Happy Clients Count</label>
+                                <input type="number" class="form-input" id="counter4-number" value="700">
+                                <label class="form-label" style="margin-top: 0.5rem;">Label (English)</label>
+                                <input type="text" class="form-input" id="counter4-label-en" value="+ Happy Clients">
+                                <label class="form-label" style="margin-top: 0.5rem;">Label (Marathi)</label>
+                                <input type="text" class="form-input" id="counter4-label-mr" value="+ समाधानी ग्राहक">
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" onclick="saveCounters()">
+                            <i class="fa fa-save"></i> Save Counter Statistics
+                        </button>
+                    </div>
+                </section>
+                <!-- Testimonials Management -->
+                <section class="page-section" id="testimonials-section">
+                    <div class="management-section">
+                        <div class="section-header">
+                            <h2 class="section-title">
+                                <i class="fa fa-comments"></i>Testimonials Management
+                            </h2>
+                        </div>
+                        <div class="success-message" id="testimonials-success">Testimonials updated successfully!</div>
+                        <div class="form-group">
+                            <h3 style="color: #e81a39; margin-bottom: 1rem;">Section Heading</h3>
+                            <div class="form-grid">
+                                <div>
+                                    <label class="form-label">Main Heading (English)</label>
+                                    <input type="text" class="form-input" id="testimonial-heading-en" value="Testimonials">
+                                </div>
+                                <div>
+                                    <label class="form-label">Main Heading (Marathi)</label>
+                                    <input type="text" class="form-input" id="testimonial-heading-mr" value="प्रशंसापत्रे">
+                                </div>
+                                <div>
+                                    <label class="form-label">Sub Heading (English)</label>
+                                    <input type="text" class="form-input" id="testimonial-subheading-en" value="What They Say">
+                                </div>
+                                <div>
+                                    <label class="form-label">Sub Heading (Marathi)</label>
+                                    <input type="text" class="form-input" id="testimonial-subheading-mr" value="ते काय म्हणतात">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <h3 style="color: #e81a39; margin-bottom: 1rem;">Add New Testimonial</h3>
+                            <div class="form-grid">
+                                <div>
+                                    <label class="form-label">Client Name</label>
+                                    <input type="text" class="form-input" id="new-testimonial-name" placeholder="Enter client name">
+                                </div>
+                                <div>
+                                    <label class="form-label">Company</label>
+                                    <input type="text" class="form-input" id="new-testimonial-company" placeholder="Enter company name">
+                                </div>
+                                <div>
+                                    <label class="form-label">Rating (1-5)</label>
+                                    <select class="form-select" id="new-testimonial-rating">
+                                        <option value="5">5 Stars</option>
+                                        <option value="4">4 Stars</option>
+                                        <option value="3">3 Stars</option>
+                                        <option value="2">2 Stars</option>
+                                        <option value="1">1 Star</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="form-label">Client Photo URL</label>
+                                    <input type="url" class="form-input" id="new-testimonial-photo" placeholder="Enter photo URL">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Testimonial Text (English)</label>
+                                <textarea class="form-textarea" id="new-testimonial-text-en" placeholder="Enter testimonial text in English"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Testimonial Text (Marathi)</label>
+                                <textarea class="form-textarea" id="new-testimonial-text-mr" placeholder="Enter testimonial text in Marathi"></textarea>
+                            </div>
+                            <button class="btn btn-success" onclick="addTestimonial()">
+                                <i class="fa fa-plus"></i> Add Testimonial
+                            </button>
+                        </div>
+                        <div class="table-container">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Client Name</th>
+                                        <th>Company</th>
+                                        <th>Rating</th>
+                                        <th>Testimonial (EN)</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="testimonials-table"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+                <!-- Gallery Management -->
+                <section class="page-section" id="gallery-section">
+                    <div class="management-section">
+                        <div class="section-header">
+                            <h2 class="section-title">
+                                <i class="fa fa-picture-o"></i>Photo Gallery Management
+                            </h2>
+                        </div>
+                        <div class="success-message" id="gallery-success">Gallery updated successfully!</div>
+                        <div class="form-group">
+                            <h3 style="color: #e81a39; margin-bottom: 1rem;">Section Heading</h3>
+                            <div class="form-grid">
+                                <div>
+                                    <label class="form-label">Main Heading (English)</label>
+                                    <input type="text" class="form-input" id="gallery-heading-en" value="Photo Gallery">
+                                </div>
+                                <div>
+                                    <label class="form-label">Main Heading (Marathi)</label>
+                                    <input type="text" class="form-input" id="gallery-heading-mr" value="फोटो गॅलरी">
+                                </div>
+                                <div>
+                                    <label class="form-label">Sub Heading (English)</label>
+                                    <input type="text" class="form-input" id="gallery-subheading-en" value="See Our Experience">
+                                </div>
+                                <div>
+                                    <label class="form-label">Sub Heading (Marathi)</label>
+                                    <input type="text" class="form-input" id="gallery-subheading-mr" value="आमचा अनुभव पहा">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <h3 style="color: #e81a39; margin-bottom: 1rem;">Add New Gallery Image</h3>
+                            <div class="form-grid">
+                                <div>
+                                    <label class="form-label">Image URL</label>
+                                    <input type="url" class="form-input" id="new-gallery-image" placeholder="Enter image URL">
+                                    <img id="gallery-preview" class="image-preview" style="display: none;">
+                                </div>
+                                <div>
+                                    <label class="form-label">Image Title</label>
+                                    <input type="text" class="form-input" id="new-gallery-title" placeholder="Enter image title">
+                                </div>
+                                <div>
+                                    <label class="form-label">Alt Text</label>
+                                    <input type="text" class="form-input" id="new-gallery-alt" placeholder="Enter alt text">
+                                </div>
+                            </div>
+                            <button class="btn btn-success" onclick="addGalleryImage()">
+                                <i class="fa fa-plus"></i> Add Gallery Image
+                            </button>
+                        </div>
+                        <div class="table-container">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Preview</th>
+                                        <th>Title</th>
+                                        <th>Alt Text</th>
+                                        <th>URL</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="gallery-table"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+                <!-- Clients Management -->
+                <section class="page-section" id="clients-section">
+                    <div class="management-section">
+                        <div class="section-header">
+                            <h2 class="section-title">
+                                <i class="fa fa-building"></i>Client Logos Management
+                            </h2>
+                        </div>
+                        <div class="success-message" id="clients-success">Client logos updated successfully!</div>
+                        <div class="form-group">
+                            <h3 style="color: #e81a39; margin-bottom: 1rem;">Add New Client Logo</h3>
+                            <div class="form-grid">
+                                <div>
+                                    <label class="form-label">Client Name</label>
+                                    <input type="text" class="form-input" id="new-client-name" placeholder="Enter client name">
+                                </div>
+                                <div>
+                                    <label class="form-label">Logo URL</label>
+                                    <input type="url" class="form-input" id="new-client-logo" placeholder="Enter logo URL">
+                                    <img id="client-preview" class="image-preview" style="display: none;">
+                                </div>
+                            </div>
+                            <button class="btn btn-success" onclick="addClient()">
+                                <i class="fa fa-plus"></i> Add Client
+                            </button>
+                        </div>
+                        <div class="table-container">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Logo</th>
+                                        <th>Client Name</th>
+                                        <th>URL</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="clients-table"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+                <!-- Employees Management -->
+                <section class="page-section" id="employees-section">
+                    <div class="management-section">
+                        <div class="section-header">
+                            <h2 class="section-title">
+                                <i class="fa fa-users"></i>Employee Management
+                            </h2>
+                        </div>
+                        <div class="success-message" id="employees-success">Employee updated successfully!</div>
+                        <div class="form-group">
+                            <h3 style="color: #e81a39; margin-bottom: 1rem;">Add New Employee</h3>
+                            <div class="form-grid">
+                                <div>
+                                    <label class="form-label">Employee Name</label>
+                                    <input type="text" class="form-input" id="new-employee-name" placeholder="Enter employee name">
+                                </div>
+                                <div>
+                                    <label class="form-label">Designation</label>
+                                    <input type="text" class="form-input" id="new-employee-designation" placeholder="Enter designation">
+                                </div>
+                                <div>
+                                    <label class="form-label">Profile Photo URL</label>
+                                    <input type="url" class="form-input" id="new-employee-photo" placeholder="Enter photo URL">
+                                </div>
+                            </div>
+                            <button class="btn btn-success" onclick="addEmployee()">
+                                <i class="fa fa-plus"></i> Add Employee
+                            </button>
+                        </div>
+                        <div class="table-container">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Photo</th>
+                                        <th>Name</th>
+                                        <th>Designation</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="employees-table"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+                <!-- Contact Info Management -->
+                <section class="page-section" id="contact-section">
+                    <div class="management-section">
+                        <div class="section-header">
+                            <h2 class="section-title">
+                                <i class="fa fa-phone"></i>Contact Information Management
+                            </h2>
+                        </div>
+                        <div class="success-message" id="contact-success">Contact information updated successfully!</div>
+                        <div class="form-grid">
+                            <div>
+                                <label class="form-label">Primary Phone Number</label>
+                                <input type="tel" class="form-input" id="primary-phone" value="(+91) 80-907-85-907">
+                            </div>
+                            <div>
+                                <label class="form-label">Secondary Phone Number</label>
+                                <input type="tel" class="form-input" id="secondary-phone" placeholder="Enter secondary phone">
+                            </div>
+                            <div>
+                                <label class="form-label">Email Address</label>
+                                <input type="email" class="form-input" id="email-address" placeholder="Enter email address">
+                            </div>
+                            <div>
+                                <label class="form-label">WhatsApp Number</label>
+                                <input type="tel" class="form-input" id="whatsapp-number" value="+91 80-907-85-907">
+                            </div>
+                            <div>
+                                <label class="form-label">Office Address</label>
+                                <textarea class="form-textarea" id="office-address" placeholder="Enter office address"></textarea>
+                            </div>
+                            <div>
+                                <label class="form-label">Business Hours</label>
+                                <textarea class="form-textarea" id="business-hours" placeholder="Enter business hours"></textarea>
+                            </div>
+                        </div>
+                        <h3 style="color: #e81a39; margin: 2rem 0 1rem 0;">Social Media Links</h3>
+                        <div class="form-grid">
+                            <div>
+                                <label class="form-label">Facebook URL</label>
+                                <input type="url" class="form-input" id="facebook-url" value="https://www.facebook.com/Yashrajsps/">
+                            </div>
+                            <div>
+                                <label class="form-label">LinkedIn URL</label>
+                                <input type="url" class="form-input" id="linkedin-url" value="https://www.linkedin.com/in/yashraj-security-service-and-placement-service-aa11121a6/">
+                            </div>
+                            <div>
+                                <label class="form-label">WhatsApp Business URL</label>
+                                <input type="url" class="form-input" id="whatsapp-url" value="https://wa.me/message/D6LKIJMSMH6OP1">
+                            </div>
+                            <div>
+                                <label class="form-label">JustDial URL</label>
+                                <input type="url" class="form-input" id="justdial-url" value="https://www.justdial.com/Sangli/Yashraj-Business-Group-Pvt-Ltd-Shirdhon/9999PX233-X233-230614144417-Y5C2_BZDET">
+                            </div>
+                        </div>
+                        <h3 style="color: #e81a39; margin: 2rem 0 1rem 0;">Brochure Information</h3>
+                        <div class="form-grid">
+                            <div>
+                                <label class="form-label">Brochure Title (English)</label>
+                                <input type="text" class="form-input" id="brochure-title-en" value="Download our corporate brochure">
+                            </div>
+                            <div>
+                                <label class="form-label">Brochure Title (Marathi)</label>
+                                <input type="text" class="form-input" id="brochure-title-mr" value="आमचे कॉर्पोरेट ब्रोशर डाउनलोड करा">
+                            </div>
+                            <div>
+                                <label class="form-label">Brochure PDF URL</label>
+                                <input type="url" class="form-input" id="brochure-pdf-url" value="assets/YRBG-images/Brochure.pdf">
+                            </div>
+                            <div>
+                                <label class="form-label">Download Button Text (English)</label>
+                                <input type="text" class="form-input" id="download-btn-en" value="Download.Pdf">
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" onclick="saveContactInfo()">
+                            <i class="fa fa-save"></i> Save Contact Information
+                        </button>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+    <!-- Custom Modal for Alerts and Confirms -->
+    <div id="customModal" class="modal">
+        <div class="modal-content">
+            <p id="modalMessage" class="modal-message"></p>
+            <div class="modal-actions">
+                <button id="modalConfirmBtn" class="btn btn-primary hidden">Yes</button>
+                <button id="modalCloseBtn" class="btn btn-secondary">Close</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        // DOM Elements
+        const sidebar = document.getElementById('sidebar');
+        const mainContent = document.getElementById('mainContent');
+        const menuToggle = document.getElementById('menuToggle');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+        const logoutBtn = document.getElementById('logoutBtn');
+
+        // Modal Elements
+        const customModal = document.getElementById('customModal');
+        const modalMessage = document.getElementById('modalMessage');
+        const modalConfirmBtn = document.getElementById('modalConfirmBtn');
+        const modalCloseBtn = document.getElementById('modalCloseBtn');
+        let modalCallback = null;
+
+        // Custom Modal Functions to replace alert() and confirm()
+        function showModal(message, isConfirm = false, callback = null) {
+            modalMessage.textContent = message;
+            customModal.style.display = 'flex';
+            modalConfirmBtn.classList.add('hidden');
+            modalCloseBtn.textContent = 'Close';
+            modalCallback = null;
+
+            if (isConfirm) {
+                modalConfirmBtn.classList.remove('hidden');
+                modalCloseBtn.textContent = 'Cancel';
+                modalCallback = callback;
+            }
+        }
+
+        modalCloseBtn.addEventListener('click', () => {
+            customModal.style.display = 'none';
+        });
+
+        modalConfirmBtn.addEventListener('click', () => {
+            customModal.style.display = 'none';
+            if (modalCallback) {
+                modalCallback(true);
+            }
+        });
+
+        // Navigation functionality
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.page-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show selected section
+            const sectionElement = document.getElementById(sectionId + '-section');
+            if (sectionElement) {
+                sectionElement.classList.add('active');
+            }
+
+            // Update active nav item
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            const navItem = document.querySelector(`[data-section="${sectionId}"]`);
+            if (navItem) {
+                navItem.classList.add('active');
+            }
+        }
+
+        // Save functions for different sections
+        function saveHeroSlider() {
+            const data = {
+                slide1: {
+                    titleEn: document.getElementById('slide1-title-en').value,
+                    titleMr: document.getElementById('slide1-title-mr').value,
+                    descEn: document.getElementById('slide1-desc-en').value,
+                    descMr: document.getElementById('slide1-desc-mr').value,
+                    btnEn: document.getElementById('slide1-btn-en').value,
+                    btnMr: document.getElementById('slide1-btn-mr').value
+                },
+                slide2: {
+                    titleEn: document.getElementById('slide2-title-en').value,
+                    titleMr: document.getElementById('slide2-title-mr').value,
+                    descEn: document.getElementById('slide2-desc-en').value,
+                    descMr: document.getElementById('slide2-desc-mr').value
+                },
+                slide3: {
+                    titleEn: document.getElementById('slide3-title-en').value,
+                    titleMr: document.getElementById('slide3-title-mr').value,
+                    descEn: document.getElementById('slide3-desc-en').value,
+                    descMr: document.getElementById('slide3-desc-mr').value
+                }
+            };
+            localStorage.setItem('yashraj_hero_slider', JSON.stringify(data));
+            showSuccessMessage('hero-success');
+            console.log('Hero slider data saved:', data);
+        }
+
+        function saveServices() {
+            const data = {
+                headingEn: document.getElementById('services-heading-en').value,
+                headingMr: document.getElementById('services-heading-mr').value,
+                subheadingEn: document.getElementById('services-subheading-en').value,
+                subheadingMr: document.getElementById('services-subheading-mr').value,
+                services: getTableData('services-table')
+            };
+            localStorage.setItem('yashraj_services', JSON.stringify(data));
+            showSuccessMessage('services-success');
+            console.log('Services data saved:', data);
+        }
+
+        function saveCounters() {
+            const data = {
+                titleEn: document.getElementById('counter-title-en').value,
+                titleMr: document.getElementById('counter-title-mr').value,
+                counters: {
+                    counter1: {
+                        number: document.getElementById('counter1-number').value,
+                        labelEn: document.getElementById('counter1-label-en').value,
+                        labelMr: document.getElementById('counter1-label-mr').value
+                    },
+                    counter2: {
+                        number: document.getElementById('counter2-number').value,
+                        labelEn: document.getElementById('counter2-label-en').value,
+                        labelMr: document.getElementById('counter2-label-mr').value
+                    },
+                    counter3: {
+                        number: document.getElementById('counter3-number').value,
+                        labelEn: document.getElementById('counter3-label-en').value,
+                        labelMr: document.getElementById('counter3-label-mr').value
+                    },
+                    counter4: {
+                        number: document.getElementById('counter4-number').value,
+                        labelEn: document.getElementById('counter4-label-en').value,
+                        labelMr: document.getElementById('counter4-label-mr').value
+                    }
+                }
+            };
+            localStorage.setItem('yashraj_counters', JSON.stringify(data));
+            showSuccessMessage('counters-success');
+            console.log('Counter statistics saved:', data);
+        }
+
+        function saveTestimonials() {
+            const data = {
+                headingEn: document.getElementById('testimonial-heading-en').value,
+                headingMr: document.getElementById('testimonial-heading-mr').value,
+                subheadingEn: document.getElementById('testimonial-subheading-en').value,
+                subheadingMr: document.getElementById('testimonial-subheading-mr').value,
+                testimonials: getTableData('testimonials-table')
+            };
+            localStorage.setItem('yashraj_testimonials', JSON.stringify(data));
+            showSuccessMessage('testimonials-success');
+            console.log('Testimonials saved:', data);
+        }
+
+        function saveGallery() {
+            const data = {
+                headingEn: document.getElementById('gallery-heading-en').value,
+                headingMr: document.getElementById('gallery-heading-mr').value,
+                subheadingEn: document.getElementById('gallery-subheading-en').value,
+                subheadingMr: document.getElementById('gallery-subheading-mr').value,
+                gallery: getTableData('gallery-table')
+            };
+            localStorage.setItem('yashraj_gallery', JSON.stringify(data));
+            showSuccessMessage('gallery-success');
+            console.log('Gallery saved:', data);
+        }
+
+        function saveClients() {
+            const data = getTableData('clients-table');
+            localStorage.setItem('yashraj_clients', JSON.stringify(data));
+            showSuccessMessage('clients-success');
+            console.log('Clients saved:', data);
+        }
+
+        function saveEmployees() {
+            const data = getTableData('employees-table');
+            localStorage.setItem('yashraj_employees', JSON.stringify(data));
+            showSuccessMessage('employees-success');
+            console.log('Employees saved:', data);
+        }
+
+        function saveContactInfo() {
+            const data = {
+                primaryPhone: document.getElementById('primary-phone').value,
+                secondaryPhone: document.getElementById('secondary-phone').value,
+                email: document.getElementById('email-address').value,
+                whatsappNumber: document.getElementById('whatsapp-number').value,
+                officeAddress: document.getElementById('office-address').value,
+                businessHours: document.getElementById('business-hours').value,
+                socialMedia: {
+                    facebook: document.getElementById('facebook-url').value,
+                    linkedin: document.getElementById('linkedin-url').value,
+                    whatsapp: document.getElementById('whatsapp-url').value,
+                    justdial: document.getElementById('justdial-url').value
+                },
+                brochure: {
+                    titleEn: document.getElementById('brochure-title-en').value,
+                    titleMr: document.getElementById('brochure-title-mr').value,
+                    pdfUrl: document.getElementById('brochure-pdf-url').value,
+                    downloadBtnEn: document.getElementById('download-btn-en').value
+                }
+            };
+            localStorage.setItem('yashraj_contact_info', JSON.stringify(data));
+            showSuccessMessage('contact-success');
+            console.log('Contact information saved:', data);
+        }
+
+        // Add functions for table data
+        function addService() {
+            const nameEn = document.getElementById('new-service-name-en').value;
+            const nameMr = document.getElementById('new-service-name-mr').value;
+            const descEn = document.getElementById('new-service-desc-en').value;
+            const descMr = document.getElementById('new-service-desc-mr').value;
+            const icon = document.getElementById('new-service-icon').value;
+
+            if (!nameEn || !descEn) {
+                showModal('Please fill in all required fields.');
+                return;
+            }
+
+            const tableBody = document.getElementById('services-table');
+            const row = createTableRow([nameEn, nameMr, descEn, icon], ['editService', 'deleteService']);
+            tableBody.appendChild(row);
+            
+            // Clear form
+            document.getElementById('new-service-name-en').value = '';
+            document.getElementById('new-service-name-mr').value = '';
+            document.getElementById('new-service-desc-en').value = '';
+            document.getElementById('new-service-desc-mr').value = '';
+            document.getElementById('new-service-icon').value = '';
+
+            showSuccessMessage('services-success');
+            saveServices();
+        }
+
+        function addTestimonial() {
+            const name = document.getElementById('new-testimonial-name').value;
+            const company = document.getElementById('new-testimonial-company').value;
+            const rating = document.getElementById('new-testimonial-rating').value;
+            const textEn = document.getElementById('new-testimonial-text-en').value;
+            const textMr = document.getElementById('new-testimonial-text-mr').value;
+            const photo = document.getElementById('new-testimonial-photo').value;
+            if (!name || !company || !textEn) {
+                showModal('Please fill in all required fields');
+                return;
+            }
+            const tableBody = document.getElementById('testimonials-table');
+            const stars = '⭐'.repeat(parseInt(rating));
+            const row = createTableRow([name, company, stars, textEn.substring(0, 50) + '...', photo, textEn, textMr, rating], ['editTestimonial', 'deleteTestimonial']);
+            tableBody.appendChild(row);
+            
+            // Clear form
+            document.getElementById('new-testimonial-name').value = '';
+            document.getElementById('new-testimonial-company').value = '';
+            document.getElementById('new-testimonial-rating').value = '5';
+            document.getElementById('new-testimonial-text-en').value = '';
+            document.getElementById('new-testimonial-text-mr').value = '';
+            document.getElementById('new-testimonial-photo').value = '';
+
+            showSuccessMessage('testimonials-success');
+            saveTestimonials();
+        }
+
+        function addGalleryImage() {
+            const imageUrl = document.getElementById('new-gallery-image').value;
+            const title = document.getElementById('new-gallery-title').value;
+            const altText = document.getElementById('new-gallery-alt').value;
+            if (!imageUrl || !title || !altText) {
+                showModal('Please fill in all fields');
+                return;
+            }
+            const tableBody = document.getElementById('gallery-table');
+            const row = createTableRow([`<img src="${imageUrl}" alt="${altText}" style="width: 60px; height: 40px; object-fit: cover; border-radius: 4px;">`, title, altText, imageUrl], ['editGalleryImage', 'deleteGalleryImage']);
+            tableBody.appendChild(row);
+            
+            // Clear form
+            document.getElementById('new-gallery-image').value = '';
+            document.getElementById('new-gallery-title').value = '';
+            document.getElementById('new-gallery-alt').value = '';
+            document.getElementById('gallery-preview').style.display = 'none';
+
+            showSuccessMessage('gallery-success');
+            saveGallery();
+        }
+
+        function addClient() {
+            const name = document.getElementById('new-client-name').value;
+            const logoUrl = document.getElementById('new-client-logo').value;
+            if (!name || !logoUrl) {
+                showModal('Please fill in all fields.');
+                return;
+            }
+            const tableBody = document.getElementById('clients-table');
+            const row = createTableRow([`<img src="${logoUrl}" alt="${name} logo" style="height: 40px;">`, name, logoUrl], ['editClient', 'deleteClient']);
+            tableBody.appendChild(row);
+
+            // Clear form
+            document.getElementById('new-client-name').value = '';
+            document.getElementById('new-client-logo').value = '';
+            document.getElementById('client-preview').style.display = 'none';
+
+            showSuccessMessage('clients-success');
+            saveClients();
+        }
+
+        function addEmployee() {
+            const name = document.getElementById('new-employee-name').value;
+            const designation = document.getElementById('new-employee-designation').value;
+            const photoUrl = document.getElementById('new-employee-photo').value;
+            if (!name || !designation) {
+                showModal('Please fill in all required fields.');
+                return;
+            }
+            const tableBody = document.getElementById('employees-table');
+            const row = createTableRow([`<img src="${photoUrl}" alt="${name}" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">`, name, designation], ['editEmployee', 'deleteEmployee']);
+            tableBody.appendChild(row);
+
+            // Clear form
+            document.getElementById('new-employee-name').value = '';
+            document.getElementById('new-employee-designation').value = '';
+            document.getElementById('new-employee-photo').value = '';
+
+            showSuccessMessage('employees-success');
+            saveEmployees();
+        }
+
+        // Generic delete function
+        function deleteTableRow(button, saveFunction) {
+            showModal('Are you sure you want to delete this item?', true, (result) => {
+                if (result) {
+                    button.closest('tr').remove();
+                    saveFunction();
+                }
+            });
+        }
+        
+        function deleteService(button) { deleteTableRow(button, saveServices); }
+        function deleteTestimonial(button) { deleteTableRow(button, saveTestimonials); }
+        function deleteGalleryImage(button) { deleteTableRow(button, saveGallery); }
+        function deleteClient(button) { deleteTableRow(button, saveClients); }
+        function deleteEmployee(button) { deleteTableRow(button, saveEmployees); }
+
+        // Edit functions (placeholder - would open edit modals in production)
+        function editService(button) { showModal('Edit service functionality would open a modal here'); }
+        function editTestimonial(button) { showModal('Edit testimonial functionality would open a modal here'); }
+        function editGalleryImage(button) { showModal('Edit gallery image functionality would open a modal here'); }
+        function editClient(button) { showModal('Edit client functionality would open a modal here'); }
+        function editEmployee(button) { showModal('Edit employee functionality would open a modal here'); }
+
+
+        // Helper functions
+        function showSuccessMessage(messageId) {
+            const message = document.getElementById(messageId);
+            if(message) {
+                message.style.display = 'block';
+                setTimeout(() => {
+                    message.style.display = 'none';
+                }, 3000);
+            }
+        }
+        
+        function getTableData(tableId) {
+            const tableBody = document.getElementById(tableId);
+            if (!tableBody) return [];
+            const rows = tableBody.querySelectorAll('tr');
+            const data = [];
+            rows.forEach(row => {
+                const cells = row.querySelectorAll('td');
+                const rowData = {};
+                rowData.content = Array.from(cells).map(cell => cell.innerHTML.trim()).slice(0, cells.length - 1);
+                data.push(rowData);
+            });
+            return data;
+        }
+
+        function createTableRow(cellData, actions) {
+            const row = document.createElement('tr');
+            cellData.forEach(cell => {
+                const td = document.createElement('td');
+                td.innerHTML = cell;
+                row.appendChild(td);
+            });
+            const actionTd = document.createElement('td');
+            actions.forEach(action => {
+                const button = document.createElement('button');
+                const icon = action === 'deleteService' || action === 'deleteTestimonial' || action === 'deleteGalleryImage' || action === 'deleteClient' || action === 'deleteEmployee' ? 'fa fa-trash' : 'fa fa-edit';
+                const color = action === 'deleteService' || action === 'deleteTestimonial' || action === 'deleteGalleryImage' || action === 'deleteClient' || action === 'deleteEmployee' ? 'delete-btn' : 'edit-btn';
+                button.className = `action-btn ${color}`;
+                button.setAttribute('onclick', `${action}(this)`);
+                button.innerHTML = `<i class="${icon}"></i>`;
+                actionTd.appendChild(button);
+            });
+            row.appendChild(actionTd);
+            return row;
+        }
+
+        // Load functions to populate UI from localStorage
+        function loadData() {
+            loadHeroSlider();
+            loadServices();
+            loadCounters();
+            loadTestimonials();
+            loadGallery();
+            loadClients();
+            loadEmployees();
+            loadContactInfo();
+        }
+
+        function loadHeroSlider() {
+            const data = JSON.parse(localStorage.getItem('yashraj_hero_slider'));
+            if (data) {
+                document.getElementById('slide1-title-en').value = data.slide1.titleEn || '';
+                document.getElementById('slide1-title-mr').value = data.slide1.titleMr || '';
+                document.getElementById('slide1-desc-en').value = data.slide1.descEn || '';
+                document.getElementById('slide1-desc-mr').value = data.slide1.descMr || '';
+                document.getElementById('slide1-btn-en').value = data.slide1.btnEn || '';
+                document.getElementById('slide1-btn-mr').value = data.slide1.btnMr || '';
+                document.getElementById('slide2-title-en').value = data.slide2.titleEn || '';
+                document.getElementById('slide2-title-mr').value = data.slide2.titleMr || '';
+                document.getElementById('slide2-desc-en').value = data.slide2.descEn || '';
+                document.getElementById('slide2-desc-mr').value = data.slide2.descMr || '';
+                document.getElementById('slide3-title-en').value = data.slide3.titleEn || '';
+                document.getElementById('slide3-title-mr').value = data.slide3.titleMr || '';
+                document.getElementById('slide3-desc-en').value = data.slide3.descEn || '';
+                document.getElementById('slide3-desc-mr').value = data.slide3.descMr || '';
+            }
+        }
+        
+        function loadServices() {
+            const data = JSON.parse(localStorage.getItem('yashraj_services'));
+            if (data) {
+                document.getElementById('services-heading-en').value = data.headingEn || '';
+                document.getElementById('services-heading-mr').value = data.headingMr || '';
+                document.getElementById('services-subheading-en').value = data.subheadingEn || '';
+                document.getElementById('services-subheading-mr').value = data.subheadingMr || '';
+                const tableBody = document.getElementById('services-table');
+                tableBody.innerHTML = '';
+                if (data.services) {
+                    data.services.forEach(item => {
+                        const row = createTableRow(item.content, ['editService', 'deleteService']);
+                        tableBody.appendChild(row);
+                    });
+                }
+            }
+        }
+
+        function loadCounters() {
+            const data = JSON.parse(localStorage.getItem('yashraj_counters'));
+            if (data) {
+                document.getElementById('counter-title-en').value = data.titleEn || '';
+                document.getElementById('counter-title-mr').value = data.titleMr || '';
+                if (data.counters) {
+                    document.getElementById('counter1-number').value = data.counters.counter1.number || '';
+                    document.getElementById('counter1-label-en').value = data.counters.counter1.labelEn || '';
+                    document.getElementById('counter1-label-mr').value = data.counters.counter1.labelMr || '';
+                    document.getElementById('counter2-number').value = data.counters.counter2.number || '';
+                    document.getElementById('counter2-label-en').value = data.counters.counter2.labelEn || '';
+                    document.getElementById('counter2-label-mr').value = data.counters.counter2.labelMr || '';
+                    document.getElementById('counter3-number').value = data.counters.counter3.number || '';
+                    document.getElementById('counter3-label-en').value = data.counters.counter3.labelEn || '';
+                    document.getElementById('counter3-label-mr').value = data.counters.counter3.labelMr || '';
+                    document.getElementById('counter4-number').value = data.counters.counter4.number || '';
+                    document.getElementById('counter4-label-en').value = data.counters.counter4.labelEn || '';
+                    document.getElementById('counter4-label-mr').value = data.counters.counter4.labelMr || '';
+                }
+            }
+        }
+
+        function loadTestimonials() {
+            const data = JSON.parse(localStorage.getItem('yashraj_testimonials'));
+            if (data) {
+                document.getElementById('testimonial-heading-en').value = data.headingEn || '';
+                document.getElementById('testimonial-heading-mr').value = data.headingMr || '';
+                document.getElementById('testimonial-subheading-en').value = data.subheadingEn || '';
+                document.getElementById('testimonial-subheading-mr').value = data.subheadingMr || '';
+                const tableBody = document.getElementById('testimonials-table');
+                tableBody.innerHTML = '';
+                if (data.testimonials) {
+                    data.testimonials.forEach(item => {
+                        const row = createTableRow(item.content, ['editTestimonial', 'deleteTestimonial']);
+                        tableBody.appendChild(row);
+                    });
+                }
+            }
+        }
+
+        function loadGallery() {
+            const data = JSON.parse(localStorage.getItem('yashraj_gallery'));
+            if (data) {
+                document.getElementById('gallery-heading-en').value = data.headingEn || '';
+                document.getElementById('gallery-heading-mr').value = data.headingMr || '';
+                document.getElementById('gallery-subheading-en').value = data.subheadingEn || '';
+                document.getElementById('gallery-subheading-mr').value = data.subheadingMr || '';
+                const tableBody = document.getElementById('gallery-table');
+                tableBody.innerHTML = '';
+                if (data.gallery) {
+                    data.gallery.forEach(item => {
+                        const row = createTableRow(item.content, ['editGalleryImage', 'deleteGalleryImage']);
+                        tableBody.appendChild(row);
+                    });
+                }
+            }
+        }
+
+        function loadClients() {
+            const data = JSON.parse(localStorage.getItem('yashraj_clients'));
+            const tableBody = document.getElementById('clients-table');
+            tableBody.innerHTML = '';
+            if (data) {
+                data.forEach(item => {
+                    const row = createTableRow(item.content, ['editClient', 'deleteClient']);
+                    tableBody.appendChild(row);
+                });
+            }
+        }
+
+        function loadEmployees() {
+            const data = JSON.parse(localStorage.getItem('yashraj_employees'));
+            const tableBody = document.getElementById('employees-table');
+            tableBody.innerHTML = '';
+            if (data) {
+                data.forEach(item => {
+                    const row = createTableRow(item.content, ['editEmployee', 'deleteEmployee']);
+                    tableBody.appendChild(row);
+                });
+            }
+        }
+
+        function loadContactInfo() {
+            const data = JSON.parse(localStorage.getItem('yashraj_contact_info'));
+            if (data) {
+                document.getElementById('primary-phone').value = data.primaryPhone || '';
+                document.getElementById('secondary-phone').value = data.secondaryPhone || '';
+                document.getElementById('email-address').value = data.email || '';
+                document.getElementById('whatsapp-number').value = data.whatsappNumber || '';
+                document.getElementById('office-address').value = data.officeAddress || '';
+                document.getElementById('business-hours').value = data.businessHours || '';
+                if (data.socialMedia) {
+                    document.getElementById('facebook-url').value = data.socialMedia.facebook || '';
+                    document.getElementById('linkedin-url').value = data.socialMedia.linkedin || '';
+                    document.getElementById('whatsapp-url').value = data.socialMedia.whatsapp || '';
+                    document.getElementById('justdial-url').value = data.socialMedia.justdial || '';
+                }
+                if (data.brochure) {
+                    document.getElementById('brochure-title-en').value = data.brochure.titleEn || '';
+                    document.getElementById('brochure-title-mr').value = data.brochure.titleMr || '';
+                    document.getElementById('brochure-pdf-url').value = data.brochure.pdfUrl || '';
+                    document.getElementById('download-btn-en').value = data.brochure.downloadBtnEn || '';
+                }
+            }
+        }
+        
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', () => {
+            loadData();
+            // Initial animation for counters
+            animateCounters();
+        });
+
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', handleSidebarNavigation);
+        });
+
+        menuToggle.addEventListener('click', toggleSidebar);
+        sidebarOverlay.addEventListener('click', toggleSidebar);
+        window.addEventListener('resize', handleResize);
+        logoutBtn.addEventListener('click', handleLogout);
+
+        // Gallery image preview
+        document.getElementById('new-gallery-image').addEventListener('input', function() {
+            const preview = document.getElementById('gallery-preview');
+            const url = this.value;
+            if (url) {
+                preview.src = url;
+                preview.style.display = 'block';
+            } else {
+                preview.style.display = 'none';
+            }
+        });
+
+        // Client logo preview
+        document.getElementById('new-client-logo').addEventListener('input', function() {
+            const preview = document.getElementById('client-preview');
+            const url = this.value;
+            if (url) {
+                preview.src = url;
+                preview.style.display = 'block';
+            } else {
+                preview.style.display = 'none';
+            }
+        });
+        
+        // Toggle sidebar on mobile
+        function toggleSidebar() {
+            sidebar.classList.toggle('active');
+            sidebarOverlay.classList.toggle('active');
+
+            if (window.innerWidth > 768) {
+                if (sidebar.classList.contains('collapsed')) {
+                    sidebar.classList.remove('collapsed');
+                    mainContent.classList.remove('sidebar-collapsed');
+                } else {
+                    sidebar.classList.add('collapsed');
+                    mainContent.classList.add('sidebar-collapsed');
+                }
+            }
+        }
+
+        // Handle sidebar navigation
+        function handleSidebarNavigation(e) {
+            if (e.target.classList.contains('nav-item') && e.target.id !== 'logoutBtn') {
+                e.preventDefault();
+                const section = e.target.getAttribute('data-section');
+                if (section) {
+                    showSection(section);
+
+                    if (window.innerWidth <= 768) {
+                        sidebar.classList.remove('active');
+                        sidebarOverlay.classList.remove('active');
+                    }
+                }
+            }
+        }
+        
+        // Handle logout
+        function handleLogout(e) {
+            e.preventDefault();
+            showModal('Are you sure you want to logout from Yashraj Admin Panel?', true, (result) => {
+                if(result) {
+                    window.location.href = 'admin.html';
+                }
+            });
+        }
+
+        // Handle window resize
+        function handleResize() {
+            if (window.innerWidth > 768) {
+                sidebar.classList.remove('active');
+                sidebarOverlay.classList.remove('active');
+            }
+        }
+        
+        // Counter animation for stats
+        function animateCounters() {
+            document.querySelectorAll('.stat-number').forEach(counter => {
+                const target = parseInt(counter.textContent);
+                let count = 0;
+                const increment = target / 100;
+
+                const updateCounter = () => {
+                    if (count < target) {
+                        count += increment;
+                        counter.textContent = Math.floor(count);
+                        setTimeout(updateCounter, 20);
+                    } else {
+                        counter.textContent = target;
+                    }
+                };
+
+                updateCounter();
+            });
+        }
+
+    </script>
+</body>
+</html>

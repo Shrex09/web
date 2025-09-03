@@ -1,0 +1,24 @@
+### Seed admin
+GET http://localhost:5000/api/admin/seed
+###
+POST http://localhost:5000/api/admin/register
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "admin123"
+}
+
+
+### Login admin
+POST http://localhost:5000/api/admin/login
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "admin123"
+}
+
+### Test admin API with token (replace <TOKEN>)
+GET http://localhost:5000/api/admin
+Authorization: Bearer <eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4YjI3NjZkMTQ5Njg3NDg3OTM5NmRiNSIsImlhdCI6MTc1NjUzNjAxNCwiZXhwIjoxNzU5MTI4MDE0fQ.38Fx3y-nysS-uRf3Sm1GX0QgGOah97mTNMAm-zuTMQ4>

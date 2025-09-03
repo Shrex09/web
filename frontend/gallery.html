@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery</title>
+    <style>
+        /* Basic CSS for the page layout and gallery */
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            line-height: 1.6;
+        }
+        .navbar {
+            background-color: #333;
+            padding: 1rem;
+            text-align: center;
+        }
+        .navbar a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .navbar a:hover {
+            background-color: #575757;
+        }
+        .header {
+            text-align: center;
+            padding: 50px 20px;
+            background-color: #f4f4f4;
+        }
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+        .gallery-item {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+        }
+        .caption {
+            margin-top: 10px;
+            font-style: italic;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="index.html">Home</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
+    <header class="header">
+        <h1>Photo Gallery</h1>
+        <p>A collection of beautiful images.</p>
+    </header>
+
+    <div class="gallery-container">
+        <div class="gallery-item">
+            <img src="https://via.placeholder.com/600x400" alt="Placeholder Image 1">
+            <p class="caption">A stunning view of the mountains.</p>
+        </div>
+        <div class="gallery-item">
+            <img src="https://via.placeholder.com/600x400" alt="Placeholder Image 2">
+            <p class="caption">City lights at night.</p>
+        </div>
+        <div class="gallery-item">
+            <img src="https://via.placeholder.com/600x400" alt="Placeholder Image 3">
+            <p class="caption">A peaceful forest trail.</p>
+        </div>
+        <div class="gallery-item">
+            <img src="https://via.placeholder.com/600x400" alt="Placeholder Image 4">
+            <p class="caption">Colorful flowers in bloom.</p>
+        </div>
+        <div class="gallery-item">
+            <img src="https://via.placeholder.com/600x400" alt="Placeholder Image 5">
+            <p class="caption">Abstract art with vibrant colors.</p>
+        </div>
+    </div>
+
+</body>
+</html>
